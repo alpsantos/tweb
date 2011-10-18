@@ -1,0 +1,403 @@
+html, body
+{
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+}
+body
+{
+    margin: 0px;
+    font-family: Arial;
+    font-size: 12px;
+    background-color: #e5e5e5;
+}
+#div-fundo-verde
+{
+    position: absolute;
+    top: 83px;
+    width: 100%;
+    height: 182px;
+    float: left;
+    background-color: #3a9236;
+    z-index: -1;
+}
+#div-tudo
+{
+    width: 975px;
+    height: 100%;
+    margin: auto;
+    background-color: #FFFFFF;
+    z-index: 2;
+}
+#div-conteudo
+{
+    width: 100%;
+    background-color: white;
+}
+#div-topo
+{
+    width: 100%;
+    height: 80px;
+}
+#div-busca
+{
+    width: 100%;
+    height: 190px;
+    background-image: url('../images/FundoBusca.jpg');
+    position: relative;
+}
+#div-quantidade-busca
+{
+    height: 27px;
+    width: 100%;
+    background-color: #fdffbf;
+}
+#div-blog
+{
+    width: 100%;
+    background-color: white;
+    border-top: solid 1px #d8d8d8;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    min-height: 380px;
+}
+#div-rodape
+{
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    position: relative;
+}
+/*################################## topo ########################################################*/
+#div-topo img
+{
+    margin-top: 5px;
+    margin-left: 10px;
+}
+/*############################ RESULTADO QUANTIDADE BUSCA ########################################*/
+#div-quantidade-busca #p-quantidade-busca
+{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+#div-quantidade-busca #p-quantidade-busca .span-filtro-busca
+{
+    font-weight: bold;
+    text-decoration: underline;
+}
+#div-quantidade-busca #p-quantidade-busca .span-busca-regulamentados
+{
+    color: #0d2d67;
+}
+#div-quantidade-busca #p-quantidade-busca .span-busca-pendentes
+{
+    color: #840000;
+}
+/*#################################### BUSCA #####################################################*/
+#div-busca .img-topo-busca
+{
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    z-index: 1;
+}
+#div-busca h1
+{
+    float: left;
+    font-family: Arial;
+    font-size: 21px;
+    color: #FFFFFF;
+    width: 100%;
+    text-align: center;
+    text-shadow: 2px 2px 1px #398735;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 20px;
+}
+#div-busca-fundocampo
+{
+    width: 565px;
+    height: 61px;
+    background-color: #378133;
+    border: 1px solid #31782d;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    margin-left: -282.5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#busca
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-family: Arial;
+    font-size: 21px;
+    margin-top: 8px;
+    margin-left: 6px;
+    margin-right: 6px;
+    background-color: #dceedc;
+    outline: none;
+    border: none;
+    float: left;
+    width: 424px;
+}
+#cmd-buscar
+{
+    height: 46px;
+    margin: 0px;
+    float: left;
+    margin-top: 7px;
+    width: 113px;
+    background-color: #5d8ac5;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c3e1', endColorstr='#5c89c4');
+    background: -webkit-gradient(linear, left top, left bottom, from(#89c3e1), to(#5c89c4));
+    background: -moz-linear-gradient(top,  #89c3e1,  #5c89c4);
+    border: solid 1px #5c89c4;
+    font-family: Arial;
+    font-size: 21px;
+    color: #ffffff;
+    cursor: pointer;
+    text-shadow: 2px 2px 1px #5078ab;
+}
+#div-busca .span-total-municipio
+{
+    position: absolute;
+    top: 142px;
+    left: 200px;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+}
+#div-busca .span-total-regulamentados
+{
+    position: absolute;
+    top: 142px;
+    left: 200px;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    width: 545px;
+    text-align: center;
+}
+#div-busca .span-total-pendentes
+{
+    position: absolute;
+    top: 142px;
+    right: 200px;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+}
+/*################################# RESULTADO ####################################################*/
+#div-resultado ul
+{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    width: 590px;
+    margin: auto;
+}
+#div-resultado ul li
+{
+    position: relative;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #d8d8d8;
+    height: 115px;
+}
+#div-resultado ul li img
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#div-resultado ul li .label-nome-prefeitura
+{
+    position: absolute;
+    top: 12px;
+    left: 125px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: #46a141;
+}
+#div-resultado ul li .label-relatorios-criados
+{
+    position: absolute;
+    top: 40px;
+    left: 125px;
+    font-family: Arial;
+    font-size: 12px;
+}
+#div-resultado ul li .label-links-criados
+{
+    position: absolute;
+    top: 40px;
+    left: 260px;
+    font-family: Arial;
+    font-size: 12px;
+}
+#div-resultado ul li .label-links-criados a
+{
+    color: #1044a4;
+}
+#div-resultado ul li .label-relatorios-pendentes
+{
+    position: absolute;
+    top: 60px;
+    left: 125px;
+    font-family: Arial;
+    font-size: 12px;
+}
+#div-resultado ul li .label-links-pendentes
+{
+    position: absolute;
+    top: 60px;
+    left: 260px;
+    font-family: Arial;
+    font-size: 12px;
+}
+#div-resultado ul li .label-porcentagem-regulamentado
+{
+    position: absolute;
+    top: 91px;
+    left: 426px;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    color: #0d2d67;
+}
+#div-resultado ul li .progressbar
+{
+    position: absolute;
+    height: 16px;
+    width: 280px;
+    top: 90px;
+    left: 125px;
+}
+#div-resultado ul li .ui-widget-content
+{
+    border-color: #bbbbbb !important;
+}
+#div-resultado ul li .ui-widget-header
+{
+    border-color: #bbbbbb !important;
+}
+#div-resultado ul li .progs-bar-pendente .ui-widget-header
+{
+    background: none !important;
+    background-color: #ce0400 !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f07977', endColorstr='#ac0000') !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f07977), to(#ac0000)) !important;
+    background: -moz-linear-gradient(top,  #f07977,  #ac0000) !important;
+}
+#div-resultado ul li .progs-bar-regulamentado .ui-widget-header
+{
+    background: none !important;
+    background-color: #00c24b !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#85f0af', endColorstr='#00ab42') !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#85f0af), to(#00ab42)) !important;
+    background: -moz-linear-gradient(top,  #85f0af,  #00ab42) !important;
+}
+#div-resultado ul li .progs-bar-parcialmente .ui-widget-header
+{
+    background: none !important;
+    background-color: #d2d300 !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9a0', endColorstr='#cac800') !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f9f9a0), to(#cac800)) !important;
+    background: -moz-linear-gradient(top,  #f9f9a0,  #cac800) !important;
+}
+/*################################# BLOG #########################################################*/
+#div-blog h2
+{
+    margin: 0px;
+    padding: 0px;
+    margin-left: 25px;
+    font-size: 14px;
+    color: #2a77aa;
+}
+#div-blog ul
+{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    margin-top: 20px;
+    margin-left: 25px;
+    width: 500px;
+}
+#div-blog ul li h3 a
+{
+    color: #0077b8;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+}
+#div-blog ul li p
+{
+    color: #555555;
+}
+#div-blog #div-frame-facebook
+{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    height: 400px;
+}
+/*################################# RODAPE #######################################################*/
+#div-rodape hr
+{
+    margin: 0px;
+    padding: 0px;
+    height: 4px;
+    width: 100%;
+    background-color: #e5e5e5;
+    border-top: solid 1px #aaaaaa;
+    border-bottom: solid 1px #aaaaaa;
+    border-left: none;
+    border-right: none;
+}
+#div-rodape ul
+{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    position: absolute;
+    top: 25px;
+    left: 15px;
+}
+#div-rodape ul li
+{
+    float: left;
+    min-width: 60px;
+    text-align: center;
+}
+#div-rodape ul li a
+{
+    font-family: Arial;
+    font-size: 12px;
+    color: #555555;
+    font-weight: bold;
+    text-decoration: none;
+}
+#div-rodape .imgCloud
+{
+    position: absolute;
+    right: 20px;
+    top: 31px;
+}
+#div-rodape .imgCloud img
+{
+    border: none;
+}
+
