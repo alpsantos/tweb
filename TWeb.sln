@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWeb.Portal", "TWeb.Portal\TWeb.Portal.csproj", "{C9B57F20-F3A5-4A98-8D9E-11D045651D0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWeb.Site", "TWeb.Site\TWeb.Site.csproj", "{C9B57F20-F3A5-4A98-8D9E-11D045651D0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
