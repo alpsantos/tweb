@@ -40,8 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="PrefeituraServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TWeb.Infra\TWeb.Infra.csproj">
+      <Project>{C2FC4260-EA82-4D81-B386-D77AC76FCA06}</Project>
+      <Name>TWeb.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TWeb.Modelo\TWeb.Modelo.csproj">
+      <Project>{910D3AFE-B9D3-461A-BAE1-6AC004438382}</Project>
+      <Name>TWeb.Modelo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TWeb.Repositorio\TWeb.Repositorio.csproj">
+      <Project>{4ED7D398-6288-439B-A52E-4C88E21CAA70}</Project>
+      <Name>TWeb.Repositorio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
