@@ -60,7 +60,8 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Prefeituras.aspx" />
+    <Content Include="Prefeituras\Detalhes.aspx" />
+    <Content Include="Prefeituras\Listagem.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -123,14 +124,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Prefeituras.aspx.cs">
-      <DependentUpon>Prefeituras.aspx</DependentUpon>
+    <Compile Include="Prefeituras\Detalhes.aspx.cs">
+      <DependentUpon>Detalhes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Prefeituras.aspx.designer.cs">
-      <DependentUpon>Prefeituras.aspx</DependentUpon>
+    <Compile Include="Prefeituras\Detalhes.aspx.designer.cs">
+      <DependentUpon>Detalhes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Prefeituras\Listagem.aspx.cs">
+      <DependentUpon>Listagem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prefeituras\Listagem.aspx.designer.cs">
+      <DependentUpon>Listagem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicos\Helper.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,6 +166,7 @@
       <Name>TWeb.Servico</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
