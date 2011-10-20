@@ -51,16 +51,16 @@
             </div>
             <div id="div-busca">
                 <img class="img-topo-busca" alt="" src="@Url.Content("~/content/images/ImagemTopoBusca.png")"/>
-                <h1>O TOMWEB dispõe de mais de 800 Municípios monitorados</h1>
+                <h1>O TOMWEB dispõe de @Model.TotalMunicipios Municípios monitorados</h1>
                 <div id="div-busca-fundocampo">
                     @Html.TextBox("busca")
                     <input id="cmd-buscar" type="button" value="Buscar"/>
                 </div>
-                <span class="span-total-municipio">Total de Municipios: 800</span>
-                <span class="span-total-regulamentados">Municipios regulamentados: 500</span>
-                <span class="span-total-pendentes">Municipios pendentes: 300</span>
+                <span class="span-total-municipio">Total de Municipios: @Model.TotalMunicipios</span>
+                <span class="span-total-regulamentados">Municipios regulamentados: @Model.TotalMunicipiosRegulamentados</span>
+                <span class="span-total-pendentes">Municipios pendentes: @Model.TotalMunicipiosPendentes</span>
             </div>
-            <div id="div-quantidade-busca">
+            <div id="div-quantidade-busca" style="display:none">
                 <p id="p-quantidade-busca">
                     <span class="span-filtro-busca">Américo Brasiliense</span> encontrou 
                     <span class="span-busca-regulamentados">2 Municipios regularmentados</span> e 

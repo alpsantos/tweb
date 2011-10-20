@@ -15,6 +15,7 @@ namespace TWeb.Repositorio
 
         public PrefeituraRepositorio()
         {
+            ConfiguracaoDaAplicacaoFactory.InicializarConfiguracaoAplicacaoFactory(new WebConfigConfiguracaoAplicacao());
             _configuracaoDaAplicacao = ConfiguracaoDaAplicacaoFactory.BuscarConfiguracaoAplicacao();
             _contexto = new RepositorioContext(_configuracaoDaAplicacao.ConnectionString);
         }
