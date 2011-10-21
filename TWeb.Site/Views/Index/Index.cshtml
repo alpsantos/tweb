@@ -46,11 +46,12 @@
         </li>
     </script>
     <script type="text/javascript">
-    $(document).ready(function () {
-        carregarPosts();
-        buscarPrefeitura(0);
-        $('#div-conteudo').css('min-height', $(window).height() - 80);
-    });
+        $(document).ready(function () {
+            carregarPosts();
+            buscarPrefeitura(0);
+            $('#div-conteudo').css('min-height', $(window).height() - 80);
+            $('#cmd-buscar').click(buscarPrefeituras);
+        });
 
     $(window).resize(function () {
         $('#div-conteudo').css('min-height', $(window).height() - 80);
@@ -59,6 +60,10 @@
     function carregarPosts() {
         var url_posts = '@Url.Action("Recente", "Post")';
         $("#div-blog").load(url_posts);
+    }
+
+    function buscarPrefeituras() {
+        $.post("Index/ConsultarPrefeituraPorNome", { nomePrefeitura: $("#busca").val() }, function (resultado) { alert(resultado); });
     }
     </script>
 </head>
@@ -79,7 +84,7 @@
                 <img class="img-topo-busca" alt="" src="@Url.Content("~/content/images/ImagemTopoBusca.png")"/>
                 <h1>O TOMWEB dispõe de @Model.TotalPrefeitura Municípios monitorados</h1>
                 <div id="div-busca-fundocampo">
-                    @Html.TextBox("busca")
+                    <input type="text" name="busca" id="busca" />
                     <input id="cmd-buscar" type="button" value="Buscar"/>
                 </div>
                 <span class="span-total-municipio">Total de Municipios: @Model.TotalPrefeitura</span>
@@ -98,7 +103,7 @@
             </div>
             <div id="div-paginacao"></div>
             <div id="div-blog">
-                <img src="../../Content/images/loading.gif" alt="carregando posts..."/>
+                <img src="../../Content/images/loading.gif" alt="carregando posts..."/><label>carregando posts...</label>
             </div>
         </div>
         

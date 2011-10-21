@@ -47,5 +47,19 @@ namespace TWeb.Portal.Controllers
                 return Json(new { msg = ex.Message });
             }
         }
+
+        [HttpPost]
+        public JsonResult ConsultarPrefeituraPorNome(string nomePrefeitura)
+        {
+            PrefeituraRepositorio prefeituraRepositorio = new PrefeituraRepositorio();
+
+            var prefeiturasEncontradas = prefeituraRepositorio.BuscarColecao(pref => 
+                pref.Nome.StartsWith(nomePrefeitura) ||
+                pref.Nome.Contains(nomePrefeitura) ||
+                pref.Nome.EndsWith(nomePrefeitura));
+
+            var r = prefeiturasEncontradas.ToList().Conveter();
+            return Json(prefeiturasEncontradas.ToList().Conveter());
+        }
     }
 }

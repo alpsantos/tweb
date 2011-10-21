@@ -1,6 +1,4 @@
-﻿
-
-    function ConfiguraProgressBar() {
+﻿    function ConfiguraProgressBar() {
         $(".progressbar").each(function () {
             var valueProgressBar = $(this).attr('valueprogress');
             $(this).progressbar();
@@ -10,7 +8,7 @@
     }
 
     function buscarPrefeitura(paginaIndice) {
-        $("#div-fixo-loading").css("visibility","visible");
+        $("#div-fixo-loading").fadeIn();
         $.post("Index/PaginacaoPrefeitura", {paginacao: paginaIndice}, function (prefeituraJson, status) {carregarTabelaPrefeitura(prefeituraJson, status,paginaIndice); });
     }
 
@@ -19,13 +17,10 @@
         $("#ul-prefeitura").find('li').remove();
         $.tmpl(prefeituraTemplate, prefeituraJson).appendTo('#ul-prefeitura');
         ConfiguraProgressBar();
-        $("#div-paginacao").pager({ pagenumber: (paginaIndice == undefined) ? 1 : paginaIndice, pagecount: 129, buttonClickCallback: PageClick });	 
-        $("#div-fixo-loading").css("visibility","hidden");
+        $("#div-paginacao").pager({ pagenumber: (paginaIndice == undefined) ? 1 : paginaIndice, pagecount: 129, buttonClickCallback: PageClick });
+        $("#div-fixo-loading").fadeOut(300);
     }
-
-
 
     var PageClick = function (indicePagina) {
         buscarPrefeitura(indicePagina);
     }
-
