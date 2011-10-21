@@ -1,19 +1,14 @@
 ﻿using System.Collections.Generic;
 using TWeb.Portal.Models;
-using TWeb.Site.Models;
 
 namespace TWeb.Portal.ViewModel
 {
     public class HomeViewModel
     {
-        public List<Post> Rss { get; set; }
+        public int TotalPrefeitura;
 
-        public List<Prefeitura> Municipios { get; set; }
+        public int TotalPrefeiturasPendentes;
 
-        public int TotalMunicipios { get; set; }
-
-        public int TotalMunicipiosRegulamentados { get; set; }
-
-        public int TotalMunicipiosPendentes { get; set; }
+        public int TotalPrefeiturasRegulamentados;
     }
 }

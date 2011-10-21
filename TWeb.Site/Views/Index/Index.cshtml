@@ -2,7 +2,6 @@
 
 @model TWeb.Portal.ViewModel.HomeViewModel
 @{
-    int quantidadePosts = 0;
     Layout = "~/Views/Shared/_Layout.cshtml";
     
 }
@@ -14,35 +13,62 @@
     <title>Portal TOMWEB</title>
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery-1.5.1.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery-ui-1.8.11.js")"></script>
-    
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.tmpl.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.pager.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/home.js")" type="text/javascript"></script>
+
     <link href="@Url.Content("~/content/styles/site.css")" rel="Stylesheet" type="text/css" />
     <link href="@Url.Content("~/content/styles/jquery-ui/jquery-ui-1.8.14.custom.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/content/styles/paginacao.css")" rel="Stylesheet" type="text/css" />
 
+    <script id="tmplPrefeituras" type="text/x-jquery-tmpl">
+        <li>
+            <img alt="${Nome}" title="${Nome}" width="115" height="115" src="@Url.Content("~/content/images/Americana-SP.jpg")"/>
+            <label class="label-nome-prefeitura">${Nome}</label>
+            <label class="label-relatorios-criados">Relatórios Criados:</label>
+            <label class="label-links-criados">
+                <a href="#">PPA</a>, <a href="#">LDO</a>, <a href="#">BO</a>, <a href="#">LC</a>, <a href="#">Painel Financeiro</a>
+            </label>
+            <label class="label-relatorios-pendentes">Relatórios Pendentes:</label>
+            <label class="label-links-pendentes">
+                LOA, BF, BP, RGF, RREO, Relatório e Parecer do TCE
+            </label>
+             {{if Aderencia < 20}}
+              <div class="progressbar progs-bar-pendente" valueprogress="${Aderencia}"></div>
+             {{/if}}
+             {{if Aderencia >= 20 && Aderencia <85}}
+              <div class="progressbar progs-bar-parcialmente" valueprogress="${Aderencia}"></div>
+             {{/if}}
+             {{if Aderencia >= 85}}
+             <div class="progressbar progs-bar-regulamentado" valueprogress="${Aderencia}"></div>
+             {{/if}}
+            <label class="label-porcentagem-regulamentado">${Aderencia}% Regulamentado</label>
+        </li>
+    </script>
     <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {
+        carregarPosts();
+        buscarPrefeitura(0);
+        $('#div-conteudo').css('min-height', $(window).height() - 80);
+    });
 
-            //if ($(document).height() > $(window).height()) {
-            $('#div-conteudo').css('min-height', $(window).height() - 80);
-            //}
-            ConfiguraProgressBar();
-        });
-        $(window).resize(function () {
-            //if ($(document).height() > $(window).height()) {
-            $('#div-conteudo').css('min-height', $(window).height() - 80);
-            //}
-        });
+    $(window).resize(function () {
+        $('#div-conteudo').css('min-height', $(window).height() - 80);
+    });
 
-        function ConfiguraProgressBar() {
-            $(".progressbar").each(function () {
-                var valueProgressBar = $(this).attr('valueprogress');
-                $(this).progressbar();
-                $(this).progressbar("option", "value", parseFloat(valueProgressBar));
-            });
-            $('#div-resultado ul li:last').css('border-bottom', 'none');
-        }
+    function carregarPosts() {
+        var url_posts = '@Url.Action("Recente", "Post")';
+        $("#div-blog").load(url_posts);
+    }
     </script>
 </head>
 <body>
+<div id="div-fixo-loading" class="bordaBox">
+<div id="div-fixo-conteudo" class="conteudo">
+ carregando...
+ </div>
+ <b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
+ </div>
     <div id="div-fundo-verde">&nbsp;</div>
     <div id="div-tudo">
         <div id="div-conteudo">
@@ -51,14 +77,14 @@
             </div>
             <div id="div-busca">
                 <img class="img-topo-busca" alt="" src="@Url.Content("~/content/images/ImagemTopoBusca.png")"/>
-                <h1>O TOMWEB dispõe de @Model.TotalMunicipios Municípios monitorados</h1>
+                <h1>O TOMWEB dispõe de @Model.TotalPrefeitura Municípios monitorados</h1>
                 <div id="div-busca-fundocampo">
                     @Html.TextBox("busca")
                     <input id="cmd-buscar" type="button" value="Buscar"/>
                 </div>
-                <span class="span-total-municipio">Total de Municipios: @Model.TotalMunicipios</span>
-                <span class="span-total-regulamentados">Municipios regulamentados: @Model.TotalMunicipiosRegulamentados</span>
-                <span class="span-total-pendentes">Municipios pendentes: @Model.TotalMunicipiosPendentes</span>
+                <span class="span-total-municipio">Total de Municipios: @Model.TotalPrefeitura</span>
+                <span class="span-total-regulamentados">Municipios regulamentados: @Model.TotalPrefeiturasRegulamentados</span>
+                <span class="span-total-pendentes">Municipios pendentes: @Model.TotalPrefeiturasPendentes</span>
             </div>
             <div id="div-quantidade-busca" style="display:none">
                 <p id="p-quantidade-busca">
@@ -68,72 +94,11 @@
                 </p>
             </div>
             <div id="div-resultado">
-                <ul>
-                    <li>
-                        <img alt="Prefeitura de Americana" title="Prefeitura de Americana" width="115" height="115" src="@Url.Content("~/content/images/Americana-SP.jpg")"/>
-                        <label class="label-nome-prefeitura">Prefeitura de Americana</label>
-                        <label class="label-relatorios-criados">Relatórios Criados:</label>
-                        <label class="label-links-criados">
-                            <a href="#">PPA</a>, <a href="#">LDO</a>, <a href="#">BO</a>, <a href="#">LC</a>, <a href="#">Painel Financeiro</a>
-                        </label>
-                        <label class="label-relatorios-pendentes">Relatórios Pendentes:</label>
-                        <label class="label-links-pendentes">
-                            LOA, BF, BP, RGF, RREO, Relatório e Parecer do TCE
-                        </label>
-                        <div class="progressbar progs-bar-regulamentado" valueprogress="75"></div>
-                        <label class="label-porcentagem-regulamentado">75% Regulamentado</label>
-                    </li>
-                    <li>
-                        <img alt="Prefeitura de Americana" title="Prefeitura de Americana" width="115" height="115" src="@Url.Content("~/content/images/Americana-SP.jpg")"/>
-                        <label class="label-nome-prefeitura">Prefeitura de Americana</label>
-                        <label class="label-relatorios-criados">Relatórios Criados:</label>
-                        <label class="label-links-criados">
-                            <a href="#">PPA</a>, <a href="#">LDO</a>, <a href="#">BO</a>, <a href="#">LC</a>, <a href="#">Painel Financeiro</a>
-                        </label>
-                        <label class="label-relatorios-pendentes">Relatórios Pendentes:</label>
-                        <label class="label-links-pendentes">
-                            LOA, BF, BP, RGF, RREO, Relatório e Parecer do TCE
-                        </label>
-                        <div class="progressbar progs-bar-parcialmente" valueprogress="50"></div>
-                        <label class="label-porcentagem-regulamentado">50% Regulamentado</label>
-                    </li>
-                    <li>
-                        <img alt="Prefeitura de Americana" title="Prefeitura de Americana" width="115" height="115" src="@Url.Content("~/content/images/Americana-SP.jpg")"/>
-                        <label class="label-nome-prefeitura">Prefeitura de Americana</label>
-                        <label class="label-relatorios-criados">Relatórios Criados:</label>
-                        <label class="label-links-criados">
-                            <a href="#">PPA</a>, <a href="#">LDO</a>, <a href="#">BO</a>, <a href="#">LC</a>, <a href="#">Painel Financeiro</a>
-                        </label>
-                        <label class="label-relatorios-pendentes">Relatórios Pendentes:</label>
-                        <label class="label-links-pendentes">
-                            LOA, BF, BP, RGF, RREO, Relatório e Parecer do TCE
-                        </label>
-                        <div class="progressbar progs-bar-pendente" valueprogress="10"></div>
-                        <label class="label-porcentagem-regulamentado">10% Regulamentado</label>
-                    </li>
-                </ul>
+                <ul id="ul-prefeitura"></ul>
             </div>
+            <div id="div-paginacao"></div>
             <div id="div-blog">
-                <h2>Blog Pires</h2>
-                <ul>
-                @foreach (Post post in Model.Rss)
-                {
-                    quantidadePosts = quantidadePosts + 1;
-                    <li>
-                        <div>
-                            <h3><a href="@post.Link" target="_blank">@post.Titulo</a></h3>
-                            <p>@Html.Raw(post.Descricao)</p>
-                        </div>
-                    </li>
-                    if (quantidadePosts == 3)
-                    {
-                         break;
-                    }
-                }
-                </ul>
-
-             
-
+                <img src="../../Content/images/loading.gif" alt="carregando posts..."/>
             </div>
         </div>
         

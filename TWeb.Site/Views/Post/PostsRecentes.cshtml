@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TWeb.Portal.Models.Post>
+@{    int quantidadePosts = 0;}
+<h2>
+    Blog Pires</h2>
+<ul>
+    @if (Model != null)
+    {
+        foreach (var post in Model)
+        {
+            quantidadePosts = quantidadePosts + 1;
+        <li>
+            <div>
+                <h3>
+                    <a href="@post.Link" target="_blank">@post.Titulo</a></h3>
+                <p>@Html.Raw(post.Descricao)</p>
+            </div>
+        </li>
+            if (quantidadePosts == 3)
+            {
+                break;
+            }
+        }
+    }
+    else
+    {
+        <h5>
+            Ocorreu um erro ao carregar os posts.</h5>
+    }
+</ul>
