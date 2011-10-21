@@ -32,13 +32,13 @@
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/default.aspx" Text="Página Inicial"/>
-                        <asp:MenuItem NavigateUrl="~/prefeituras/listar.aspx" Text="Prefeituras"/>
+                        <asp:MenuItem NavigateUrl="~/prefeituras/listagem.aspx" Text="Prefeituras"/>
                     </Items>
                 </asp:Menu>
             </div>
         </div>
         <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            <asp:ContentPlaceHolder ID="MainContent"   runat="server"/>
         </div>
         <div class="clear">
         </div>

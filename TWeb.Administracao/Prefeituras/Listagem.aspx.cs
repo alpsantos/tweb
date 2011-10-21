@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace TWeb.Administracao.Prefeituras
@@ -18,7 +17,9 @@ namespace TWeb.Administracao.Prefeituras
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ceedfc'");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=''");
                 e.Row.Attributes.Add("style", "cursor:pointer;");
-                e.Row.Attributes.Add("onclick", "location='detalhe.aspx?id=" + e.Row.Cells[0].Text + "'");
+                e.Row.Attributes.Add("onclick", "location='detalhes.aspx?id=" + e.Row.Cells[0].Text + "'");
+                e.Row.Cells[0].Visible = false;
+
             }
         }
 
