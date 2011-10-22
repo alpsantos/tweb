@@ -1,8 +1,8 @@
-﻿namespace TWeb.Administracao.Servicos
+﻿namespace TWeb.Administracao.Helpers
 {
-    public static class Helper
+    public static class StatusHelper
     {
-        public static string ConverterStatus(object status)
+        public static string TraduzirStatus(object status)
         {
             if (status != null)
             {

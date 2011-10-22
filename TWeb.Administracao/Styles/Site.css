@@ -326,6 +326,10 @@ div.accountInfo
     padding: 10px;
 }
 
+.display_none
+{
+    display: none;
+}
 
 /* Form styles */
 
