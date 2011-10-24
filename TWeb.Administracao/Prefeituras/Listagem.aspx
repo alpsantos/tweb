@@ -1,20 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Listagem.aspx.cs" Inherits="TWeb.Administracao.Prefeituras.Listagem" %>
-<%@ Import Namespace="TWeb.Administracao.Helpers" %>
-<%@ Import Namespace="TWeb.Administracao.Servicos" %>
 <%@ Import Namespace="TWeb.Administracao.Util" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:GridView  ID="GridViewListarPreituras" runat="server" 
-        Width="100%"
+    <asp:GridView  ID="GridViewListarPreituras" runat="server" Width="100%"
         OnRowDataBound="GridViewListarPreituras_RowDataBound" AllowPaging="True" AutoGenerateColumns="False" 
         DataSourceID="ObjectDataSourceBuscarPrefeituras" CssClass="tabela-gridview">
         <Columns>
-            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" ItemStyle-CssClass="display_none" />
             <asp:TemplateField ItemStyle-Width = "80%">
                 <HeaderTemplate>Nome da Prefeitura</HeaderTemplate>
                 <ItemTemplate> 
+                    <asp:HiddenField ID="Id"  runat="server" Value='<%#Eval("Id")%>'></asp:HiddenField>
                     <%# Eval("Nome") %>
              </ItemTemplate>
             </asp:TemplateField>
@@ -27,8 +26,7 @@
         
     </asp:GridView>
 
-    <asp:ObjectDataSource ID="ObjectDataSourceBuscarPrefeituras" runat="server" SelectMethod="BuscarPrefeituras" TypeName="TWeb.Administracao.Prefeituras.Apresentacao.Listagem">
+    <asp:ObjectDataSource ID="ObjectDataSourceBuscarPrefeituras" runat="server" SelectMethod="BuscarPrefeituras" TypeName="TWeb.Administracao.Prefeituras.ListagemServico">
     </asp:ObjectDataSource>
-
     
 </asp:Content>

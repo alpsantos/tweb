@@ -13,6 +13,24 @@ namespace TWeb.Administracao.Prefeituras {
     public partial class Manter {
         
         /// <summary>
+        /// ErrosRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ErrosRepeater;
+        
+        /// <summary>
+        /// SucessoMenssagem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater SucessoMenssagem;
+        
+        /// <summary>
         /// IdHiddenField control.
         /// </summary>
         /// <remarks>

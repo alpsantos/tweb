@@ -5,6 +5,24 @@
 <div class="form-container">
     <fieldset>
 		<legend>Detalhes da prefeitura</legend>
+
+            <asp:Repeater ID="ErrosRepeater" runat="server">
+                <ItemTemplate>
+                    <div class="errors">
+                        <%# Container.DataItem %>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+
+        <asp:Repeater ID="SucessoMenssagem" runat="server">
+            <ItemTemplate>
+                <div class="errors">
+		            <p>Os dados foram salvos com sucesso!</p>
+	            </div>
+            </ItemTemplate>
+        </asp:Repeater>
+
+
         <asp:HiddenField runat="server" ID="IdHiddenField"/>
         <div>
             <label for="address1">Nome da cidade <em>*</em></label> 

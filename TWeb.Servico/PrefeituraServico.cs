@@ -43,6 +43,13 @@ namespace TWeb.Servico
             return prefeitura;
         }
 
+        public IEnumerable<Prefeitura> BuscarPrefeiturasPorNome(string nome)
+        {
+            IEnumerable<Prefeitura> prefeituras = _prefeituraRepositorio.BuscarColecao(x => x.Nome.Contains(nome)); 
+
+            return prefeituras;
+        }
+
         public void AtualizarPrefeitura(Prefeitura prefeitura)
         {
             _prefeituraRepositorio.Atualizar(prefeitura);

@@ -5,6 +5,11 @@ namespace TWeb.Administracao.Prefeituras
 {
     public partial class Listagem : System.Web.UI.Page
     {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public int Aderencia { get; set; }
+        public int StatusId { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -17,10 +22,15 @@ namespace TWeb.Administracao.Prefeituras
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ceedfc'");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=''");
                 e.Row.Attributes.Add("style", "cursor:pointer;");
-                e.Row.Attributes.Add("onclick", "location='detalhes.aspx?id=" + e.Row.Cells[0].Text + "'");
-                e.Row.Cells[0].Visible = false;
+                //e.Row.Attributes.Add("onclick", "location='manter.aspx?id=" + e.Row.Cells[0].Text + "'");
+                e.Row.Attributes.Add("onclick", "location='manter.aspx?id=" + ((HiddenField)e.Row.Cells[0].FindControl("Id")).Value + "'");
 
             }
+        }
+
+        protected void GridViewListarPreituras_RowCreated (object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false;
         }
     }
 }

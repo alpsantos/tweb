@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web.UI.WebControls;
 
@@ -6,12 +7,18 @@ namespace TWeb.Administracao.Prefeituras
 {
     public partial class Manter : System.Web.UI.Page
     {
-        private Apresentacao.Manter _manter;
+        public Manter()
+        {
+            _manterServico = new ManterServico();
+             ErrosMenssagens = new List<string>();
+        }
+
+        private ManterServico _manterServico;
 
         public int Id
         {
             set { IdHiddenField.Value = value.ToString(); }
-            get { return IdHiddenField.Value == null ? 0 : Convert.ToInt32(IdHiddenField.Value); }
+            get { return String.IsNullOrEmpty(IdHiddenField.Value) ? 0 : Convert.ToInt32(IdHiddenField.Value); }
         }
 
         public string Nome
@@ -36,7 +43,7 @@ namespace TWeb.Administracao.Prefeituras
         {
             set
             {
-                CarregaStatusDropDownList(value);
+                ConfiguraStatusDropDownList(value);
             }
             get { return Convert.ToInt32(StatusDropDownList.SelectedValue); }
         }
@@ -44,26 +51,27 @@ namespace TWeb.Administracao.Prefeituras
         public int DocumentosId
         {
             set { DocumentosIdHiddenField.Value = value.ToString(); }
-            get { return DocumentosIdHiddenField.Value == null ? 0 : Convert.ToInt32(DocumentosIdHiddenField.Value); }
+            get { return String.IsNullOrEmpty(DocumentosIdHiddenField.Value) ? 0 : Convert.ToInt32(DocumentosIdHiddenField.Value); }
         }
 
         public NameValueCollection Documentos
         {
-            set { CarregarDocumentosCheckBoxList(value); }
+            set { ConfiguraDocumentosCheckBoxList(value); }
             get { return RetornaDocumentos(); }
         }
 
+        public List<String> ErrosMenssagens { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int id = Convert.ToInt32(Request.QueryString["id"]);
+                int id = Convert.ToInt32(Request.QueryString["id"]); //todo : parse errado
 
                 if (id != 0)
                 {
-                    _manter = new Apresentacao.Manter();
-                    _manter.BuscarPrefeitura(this, id);
+                    _manterServico = new ManterServico();
+                    _manterServico.BuscarPrefeitura(this, id);
                 }
             }
         }
@@ -81,7 +89,7 @@ namespace TWeb.Administracao.Prefeituras
             return nameValueCollection;
         }
 
-        private void CarregarDocumentosCheckBoxList(NameValueCollection value)
+        private void ConfiguraDocumentosCheckBoxList(NameValueCollection value)
         {
             foreach (ListItem item in DocumentosCheckBoxList.Items)
             {
@@ -90,7 +98,7 @@ namespace TWeb.Administracao.Prefeituras
             }
         }
 
-        private void CarregaStatusDropDownList(int value)
+        private void ConfiguraStatusDropDownList(int value)
         {
             foreach (ListItem item in StatusDropDownList.Items)
             {
@@ -105,17 +113,35 @@ namespace TWeb.Administracao.Prefeituras
 
         protected void SalvarPrefeitura_Click(object sender, EventArgs e)
         {
-            _manter = new Apresentacao.Manter();
+            _manterServico = new ManterServico();
 
             if (IsPostBack)
             {
                 if (IdHiddenField.Value == "0")
-                    _manter.AdicionarPrefeitura(this);
+
+                    _manterServico.AdicionarPrefeitura(this);
 
                 else
-                    _manter.AtualizarPrefeitura(this);
+                    _manterServico.AtualizarPrefeitura(this);
+
+                Validar(this.ErrosMenssagens);
+
             }
 
         }
+
+        private void Validar(List<string> errosMenssagens)
+        {
+            if (errosMenssagens.Count > 0)
+            {
+                ErrosRepeater.DataSource = errosMenssagens;
+                ErrosRepeater.DataBind();
+            }
+            else
+            {
+                SucessoMenssagem.DataBind();
+            }
+        }
+
     }
 }
