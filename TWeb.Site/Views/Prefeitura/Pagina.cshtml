@@ -1,0 +1,114 @@
+﻿@using TWeb.Portal.Models
+@model TWeb.Portal.ViewModel.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tipoProgressBarCss = string.Empty;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Portal TOMWEB</title>
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery-1.5.1.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/scripts/jquery-ui-1.8.11.js")"></script>
+    <link href="@Url.Content("~/content/styles/site.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/content/styles/jquery-ui/jquery-ui-1.8.14.custom.css")" rel="Stylesheet" type="text/css" />
+    <link href="@Url.Content("~/content/styles/paginacao.css")" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //carregarPosts();
+            //buscarPrefeitura(0);
+            $("#div-fixo-loading").fadeOut();
+            ConfiguraProgressBar();
+            $('#div-conteudo').css('min-height', $(window).height() - 80);
+            $('#cmd-buscar').click(buscarPrefeituras);
+        });
+
+        $(window).resize(function () {
+            $('#div-conteudo').css('min-height', $(window).height() - 80);
+        });
+
+        function carregarPosts() {
+            var url_posts = '@Url.Action("Recente", "Post")';
+            $("#div-blog").load(url_posts);
+        }
+
+        function buscarPrefeituras() {
+            $.post("Index/ConsultarPrefeituraPorNome", { nomePrefeitura: $("#busca").val() }, function (resultado) { alert(resultado); });
+        }
+
+        function ConfiguraProgressBar() {
+            $(".progressbar").each(function () {
+                var valueProgressBar = $(this).attr('valueprogress');
+                $(this).progressbar();
+                $(this).progressbar("option", "value", parseFloat(valueProgressBar));
+            });
+            $('#div-resultado ul li:last').css('border-bottom', 'none');
+        }
+    </script>
+</head>
+<body>
+    <div id="div-fixo-loading" class="bordaBox">
+        <div id="div-fixo-conteudo" class="conteudo">
+            carregando...
+        </div>
+        <b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>
+    </div>
+    <div id="div-fundo-verde">
+        &nbsp;</div>
+    <div id="div-tudo">
+        <div id="div-conteudo">
+            <div id="div-topo">
+                <img alt="TOMWEB" title="TOMWEB" width="316" height="69" src="@Url.Content("~/content/images/LogoTOMWEB.jpg")"/>
+            </div>
+            <div id="div-busca">
+                <img class="img-topo-busca" alt="" src="@Url.Content("~/content/images/ImagemTopoBusca.png")"/>
+                <h1>
+                    O TOMWEB dispõe de @Model.TotalPrefeitura Municípios monitorados</h1>
+                <div id="div-busca-fundocampo">
+                    <input type="text" name="busca" id="busca" />
+                    <input id="cmd-buscar" type="button" value="Buscar" />
+                </div>
+                <span class="span-total-municipio">Total de Municipios: @Model.TotalPrefeitura</span>
+                <span class="span-total-regulamentados">Municipios regulamentados: @Model.TotalPrefeiturasRegulamentados</span>
+                <span class="span-total-pendentes">Municipios pendentes: @Model.TotalPrefeiturasPendentes</span>
+            </div>
+            <div id="div-quantidade-busca" style="display: none">
+                <p id="p-quantidade-busca">
+                    <span class="span-filtro-busca">Américo Brasiliense</span> encontrou <span class="span-busca-regulamentados">
+                        2 Municipios regularmentados</span> e <span class="span-busca-pendentes">1 Municipio
+                            pendente</span>
+                </p>
+            </div>
+            <div id="div-resultado">
+                <ul id="ul-prefeitura2">
+                </ul>
+                <ul>
+                    @foreach (var prefeitura in Model.Prefeituras)
+                    {
+                        @Html.Action("Prefeituras", prefeitura);
+                    }
+                </ul>
+            </div>
+            <div id="div-paginacao2">
+                @Html.Action("Paginacao", "Prefeitura", Model.Paginacao)
+            </div>
+            <div id="div-blog">
+                @Html.Action("Recente", "Post")
+            </div>
+        </div>
+        <div id="div-rodape">
+            <hr />
+            <ul>
+                <li><a href="#">Status</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Advertise</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <a class="imgCloud" href="http://www.cloudideas.com.br">
+                <img alt="Cloud Ideas" title="Cloud Ideas" width="100" height="28" src="@Url.Content("~/content/images/MiniLogo.jpg")"/>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
