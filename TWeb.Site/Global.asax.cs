@@ -20,7 +20,7 @@ namespace TWeb.Portal
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Index", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Prefeitura", action = "Pagina", id = UrlParameter.Optional } // Parameter defaults
             );
 
         }

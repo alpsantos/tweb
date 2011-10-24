@@ -1,4 +1,5 @@
-﻿#div-paginacao
+﻿/*############################# Dinamico ##################################*/
+#div-paginacao
 {
     padding:40px 0px 0px 100px;
     left:70%;
@@ -46,4 +47,39 @@
     color:#000;
     font-weight:700;
     background-color:#eee;
+}
+/*############################# Estático ##################################*/
+#div-paginacao2
+{
+    padding:40px 0px 0px 100px;
+    left:70%;
+    width:55%;
+    right:100px;
+    text-align:right;
+    margin-left: auto;
+    margin-right: auto;
+    height:35px;
+}
+
+#div-paginacao2 a
+{
+    list-style:none;
+    float:left;
+    border:1px solid #ccc;
+    text-decoration:none;
+    margin:0 5px 0 0;
+    padding:5px;
+    font-size:10px;
+    color: Black;
+}
+
+#div-paginacao2 a.atual
+{
+     border:1px solid #003f7e; 
+     background-color:#EAF7FB;
+}
+
+#div-paginacao2 a:hover {
+    border:1px solid #003f7e; 
+    background-color:#B8E2EF;
 }

@@ -1,0 +1,38 @@
+﻿@model TWeb.Site.Models.Prefeitura
+<ul>
+    @{
+        var tipoProgressBarCss = string.Empty;
+        var prefeitura = Model;
+    }
+
+    <li>
+        <img alt="@prefeitura.Nome" title="@prefeitura.Nome" width="115" height="115" src="@Url.Content("~/content/images/Americana-SP.jpg")"/>
+        <label class="label-nome-prefeitura">@prefeitura.Nome</label>
+        <label class="label-relatorios-criados">
+            Relatórios Criados:</label>
+        <label class="label-links-criados">
+            <a href="#">PPA</a>, <a href="#">LDO</a>, <a href="#">BO</a>, <a href="#">LC</a>,
+            <a href="#">Painel Financeiro</a>
+        </label>
+        <label class="label-relatorios-pendentes">
+            Relatórios Pendentes:</label>
+        <label class="label-links-pendentes">
+            LOA, BF, BP, RGF, RREO, Relatório e Parecer do TCE
+        </label>
+        @if (@prefeitura.Aderencia < 20)
+        {
+            tipoProgressBarCss = "progs-bar-pendente";
+        }
+        else if (prefeitura.Aderencia >= 20 && prefeitura.Aderencia < 85)
+        {
+            tipoProgressBarCss = "progs-bar-parcialmente";
+        }
+        else if (prefeitura.Aderencia >= 85)
+        {
+            tipoProgressBarCss = "progs-bar-regulamentado";
+        }
+        <div class="progressbar @tipoProgressBarCss" valueprogress="@prefeitura.Aderencia">
+        </div>
+        <label class="label-porcentagem-regulamentado">@prefeitura.Aderencia% Regulamentado</label>
+    </li>
+</ul>

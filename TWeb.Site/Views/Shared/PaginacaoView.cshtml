@@ -1,0 +1,44 @@
+﻿@model TWeb.Site.ViewModel.Paginacao
+           
+@if (Model.IndiceAtual > 1 && Model.TotalPaginacao > Model.QuantidadePaginacaoExibicao + 1)
+{
+    @Html.ActionLink("Início", Model.Action, new { id = 1 })
+    @Html.ActionLink("Anterior", Model.Action, new { id = Model.IndiceAtual - 1 })
+}
+@{
+    var indexIncrementador = 0;
+    var indexFinal = 0;
+
+    if (Model.IndiceAtual < Model.IndiceMedio)
+    {
+        indexIncrementador = 1;
+        indexFinal = Model.QuantidadePaginacaoExibicao;
+    }
+    else if ((Model.IndiceAtual + Model.IndiceMedio) > Model.TotalPaginacao)
+    {
+        indexIncrementador = Model.TotalPaginacao - Model.QuantidadePaginacaoExibicao;
+        indexFinal = Model.TotalPaginacao;
+    }
+    else
+    {
+        indexIncrementador = Model.IndiceAtual - Model.IndiceMedio;
+        indexFinal = Model.IndiceAtual + Model.IndiceMedio;
+    }
+
+    for (; indexIncrementador <= indexFinal; indexIncrementador++)
+    {
+        if (indexIncrementador == Model.IndiceAtual)
+        {
+    <a href="" class="atual" disabled="disabled">@indexIncrementador</a>
+        }
+        else
+        {
+    <a href="@Url.Action(@Model.Action, new { id = indexIncrementador })">@indexIncrementador</a>
+        }
+    }
+}
+@if (Model.IndiceAtual != Model.TotalPaginacao && Model.TotalPaginacao > Model.QuantidadePaginacaoExibicao + 1)
+{
+    @Html.ActionLink("Próximo", Model.Action, new { id = Model.IndiceAtual + 1 })
+    @Html.ActionLink("Último", Model.Action, new { id = Model.TotalPaginacao })
+}
