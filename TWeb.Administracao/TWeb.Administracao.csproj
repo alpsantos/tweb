@@ -60,7 +60,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Prefeituras\Detalhes.aspx" />
+    <Content Include="Prefeituras\Manter.aspx" />
     <Content Include="Prefeituras\Listagem.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -124,14 +124,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Prefeituras\Apresentacao\Detalhes.cs" />
+    <Compile Include="Prefeituras\Apresentacao\Manter.cs" />
     <Compile Include="Prefeituras\Apresentacao\Listagem.cs" />
-    <Compile Include="Prefeituras\Detalhes.aspx.cs">
-      <DependentUpon>Detalhes.aspx</DependentUpon>
+    <Compile Include="Prefeituras\Manter.aspx.cs">
+      <DependentUpon>Manter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Prefeituras\Detalhes.aspx.designer.cs">
-      <DependentUpon>Detalhes.aspx</DependentUpon>
+    <Compile Include="Prefeituras\Manter.aspx.designer.cs">
+      <DependentUpon>Manter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Prefeituras\Listagem.aspx.cs">
       <DependentUpon>Listagem.aspx</DependentUpon>
@@ -141,7 +141,7 @@
       <DependentUpon>Listagem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\StatusHelper.cs" />
+    <Compile Include="Util\StatusHelper.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

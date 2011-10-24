@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Listagem.aspx.cs" Inherits="TWeb.Administracao.Prefeituras.Listagem" %>
 <%@ Import Namespace="TWeb.Administracao.Helpers" %>
 <%@ Import Namespace="TWeb.Administracao.Servicos" %>
+<%@ Import Namespace="TWeb.Administracao.Util" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

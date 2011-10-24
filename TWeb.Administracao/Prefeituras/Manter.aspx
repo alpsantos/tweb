@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Detalhes.aspx.cs" Inherits="TWeb.Administracao.Prefeituras.Detalhes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manter.aspx.cs" Inherits="TWeb.Administracao.Prefeituras.Manter" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div class="form-container">
     <fieldset>
 		<legend>Detalhes da prefeitura</legend>
-        <asp:HiddenField runat="server" ID="IdHiddenField" />
+        <asp:HiddenField runat="server" ID="IdHiddenField"/>
         <div>
             <label for="address1">Nome da cidade <em>*</em></label> 
             <asp:TextBox ID="NomeTextBox" size="100" runat="server"  />
@@ -28,6 +28,7 @@
 		</div>
         <div class="controlset">
             <span class="label">Documentos <em>*</em></span>
+            <asp:HiddenField runat="server" ID="DocumentosIdHiddenField" />
             <asp:CheckBoxList ID="DocumentosCheckBoxList" RepeatDirection="Horizontal"  runat="server">
                 <asp:ListItem Value="1">LDO</asp:ListItem>
                 <asp:ListItem Value="1">BF</asp:ListItem>
@@ -41,7 +42,7 @@
             </asp:CheckBoxList>
 		</div>	
         <div class="buttonrow">
-            <asp:Button runat="server"  CausesValidation="true"  CommandName="Update" Text="Atualizar" onclick="AtualizarPrefeitura_Click" />
+            <asp:Button runat="server" ID="SalvarButton"  CausesValidation="true" Text="Salvar" onclick="SalvarPrefeitura_Click" />
             <input type="button" value="Voltar" onclick="window.location.href='listagem.aspx'" />
 	    </div>
 	</fieldset>

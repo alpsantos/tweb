@@ -1,4 +1,4 @@
-﻿namespace TWeb.Administracao.Helpers
+﻿namespace TWeb.Administracao.Util
 {
     public static class StatusHelper
     {

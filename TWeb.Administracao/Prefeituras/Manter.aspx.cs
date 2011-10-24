@@ -4,14 +4,14 @@ using System.Web.UI.WebControls;
 
 namespace TWeb.Administracao.Prefeituras
 {
-    public partial class Detalhes : System.Web.UI.Page
+    public partial class Manter : System.Web.UI.Page
     {
-        private Apresentacao.Detalhes _detalhes;
+        private Apresentacao.Manter _manter;
 
         public int Id
         {
             set { IdHiddenField.Value = value.ToString(); }
-            get { return Convert.ToInt32(IdHiddenField.Value); }
+            get { return IdHiddenField.Value == null ? 0 : Convert.ToInt32(IdHiddenField.Value); }
         }
 
         public string Nome
@@ -41,10 +41,31 @@ namespace TWeb.Administracao.Prefeituras
             get { return Convert.ToInt32(StatusDropDownList.SelectedValue); }
         }
 
+        public int DocumentosId
+        {
+            set { DocumentosIdHiddenField.Value = value.ToString(); }
+            get { return DocumentosIdHiddenField.Value == null ? 0 : Convert.ToInt32(DocumentosIdHiddenField.Value); }
+        }
+
         public NameValueCollection Documentos
         {
             set { CarregarDocumentosCheckBoxList(value); }
             get { return RetornaDocumentos(); }
+        }
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                int id = Convert.ToInt32(Request.QueryString["id"]);
+
+                if (id != 0)
+                {
+                    _manter = new Apresentacao.Manter();
+                    _manter.BuscarPrefeitura(this, id);
+                }
+            }
         }
 
         private NameValueCollection RetornaDocumentos()
@@ -54,7 +75,7 @@ namespace TWeb.Administracao.Prefeituras
             foreach (ListItem item in DocumentosCheckBoxList.Items)
             {
                 if (item.Selected)
-                nameValueCollection .Add(item.Text, item.Value);
+                    nameValueCollection.Add(item.Text, item.Value);
             }
 
             return nameValueCollection;
@@ -82,34 +103,19 @@ namespace TWeb.Administracao.Prefeituras
         }
 
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void SalvarPrefeitura_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(Request.QueryString["id"]);
+            _manter = new Apresentacao.Manter();
 
-            if (id == 0)
-                Response.Redirect("listagem.aspx");
+            if (IsPostBack)
+            {
+                if (IdHiddenField.Value == "0")
+                    _manter.AdicionarPrefeitura(this);
 
-            _detalhes = new Apresentacao.Detalhes();
-            _detalhes.BuscarPrefeitura(this, id);
+                else
+                    _manter.AtualizarPrefeitura(this);
+            }
 
-
-            //NomeTextBox.Text = _detalhes.Nome;
-            //AderenciaTextBox.Text = _detalhes.Aderencia.ToString();
-            //OrdemTextBox.Text = _detalhes.Ordem.ToString();
-            //StatusDropDownList.SelectedIndex = _detalhes.StatusId;
-
-            //DocumentosCheckBoxList.Text = _detalhes.Nome;
-        }
-
-
-
-        //private void MontarDocumentosCheckBoxList()
-        //{
-        //    DocumentosCheckBoxList.SelectedIndex = statusId;
-        //}
-        protected void AtualizarPrefeitura_Click(object sender, EventArgs e)
-        {
-            _detalhes.AtualizarPrefeitura(this);
         }
     }
 }
