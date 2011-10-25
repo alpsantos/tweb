@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TWeb.Modelo;
 using TWeb.Servico;
 
 namespace TWeb.Administracao.Prefeituras
@@ -8,22 +9,22 @@ namespace TWeb.Administracao.Prefeituras
         public List<Listagem> BuscarPrefeituras()
         {
             PrefeituraServico prefeituraServico = new PrefeituraServico();
-            var prefeituras = prefeituraServico.BuscarPrefeiturasPaginaInicial();
+            IEnumerable<Prefeitura> listaPrefeituraModelo = prefeituraServico.BuscarPrefeiturasPaginaInicial();
 
-            List<Listagem> listagemServicoses = new List<Listagem>();
+            List<Listagem> listagemView = new List<Listagem>();
 
-            foreach (var prefeitura in prefeituras)
+            foreach (var item in listaPrefeituraModelo)
             {
-                Listagem listagem = new Listagem();
-                listagem.Id = prefeitura.Id;
-                listagem.Nome = prefeitura.Nome;
-                listagem.Aderencia = prefeitura.Aderencia;
-                listagem.StatusId = prefeitura.StatusId;
+                Listagem view = new Listagem();
+                view.Id = item.Id;
+                view.Nome = item.Nome;
+                view.Aderencia = item.Aderencia;
+                view.StatusId = item.StatusId;
 
-                listagemServicoses.Add(listagem);
+                listagemView.Add(view);
             }
 
-            return listagemServicoses;
+            return listagemView;
         }
     }
 }

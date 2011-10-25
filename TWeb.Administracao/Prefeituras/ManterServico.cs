@@ -7,122 +7,122 @@ namespace TWeb.Administracao.Prefeituras
 {
     public class ManterServico
     {
-        public void BuscarPrefeitura(Manter manter, int id)
+        public void BuscarPrefeitura(Manter manterView, int id)
         {
             PrefeituraServico prefeituraServico = new PrefeituraServico();
             var prefeitura = prefeituraServico.BuscarPrefeitura(id);
 
-            manter.Id = prefeitura.Id;
-            manter.Nome = prefeitura.Nome;
-            manter.Aderencia = prefeitura.Aderencia;
-            manter.Ordem = prefeitura.Ordem;
-            manter.Status = prefeitura.StatusId;
-            manter.DocumentosId = prefeitura.DocumentosId;
-            manter.Documentos = FormatarDocumentosParaFormulario(prefeitura.Documentos);
+            manterView.Id = prefeitura.Id;
+            manterView.Nome = prefeitura.Nome;
+            manterView.Aderencia = prefeitura.Aderencia;
+            manterView.Ordem = prefeitura.Ordem;
+            manterView.Status = prefeitura.StatusId;
+            manterView.DocumentosId = prefeitura.DocumentosId;
+            manterView.Documentos = FormatarDocumentosParaCollection(prefeitura.Documentos);
         }
 
-        public void AdicionarPrefeitura(Manter manter)
+        public void AdicionarPrefeitura(Manter manterView)
         {
-            Prefeitura prefeitura = new Prefeitura();
-            prefeitura.Nome = manter.Nome;
-            prefeitura.Aderencia = manter.Aderencia;
-            prefeitura.Ordem = manter.Ordem;
-            prefeitura.StatusId = manter.Status;
-            prefeitura.Documentos = FormatarParaModeloDocumentos(manter);
+            Prefeitura prefeituraModelo = new Prefeitura();
+            prefeituraModelo.Nome = manterView.Nome;
+            prefeituraModelo.Aderencia = manterView.Aderencia;
+            prefeituraModelo.Ordem = manterView.Ordem;
+            prefeituraModelo.StatusId = manterView.Status;
+            prefeituraModelo.Documentos = FormatarParaDocumentosModelo(manterView);
 
-            prefeitura.Validar();
+            prefeituraModelo.Validar();
 
-            if (prefeitura.BuscarRegrasDeNegocioInvalidas().Count() > 0)
+            if (prefeituraModelo.BuscarRegrasDeNegocioInvalidas().Count() > 0)
             {
-                foreach (var item in prefeitura.BuscarRegrasDeNegocioInvalidas())
+                foreach (var item in prefeituraModelo.BuscarRegrasDeNegocioInvalidas())
                 {
-                    manter.ErrosMenssagens.Add(item.Regra);
+                    manterView.MenssagensDeErro.Add(item.Regra);
                 }
             }
             else
             {
                 PrefeituraServico prefeituraServico = new PrefeituraServico();
-                prefeituraServico.AdicionarPrefeitura(prefeitura);
+                prefeituraServico.AdicionarPrefeitura(prefeituraModelo);
             }
         }
 
-        public void AtualizarPrefeitura(Manter manter)
+        public void AtualizarPrefeitura(Manter manterView)
         {
-            Prefeitura prefeitura = new Prefeitura();
-            prefeitura.Id = manter.Id;
-            prefeitura.Nome = manter.Nome;
-            prefeitura.Aderencia = manter.Aderencia;
-            prefeitura.Ordem = manter.Ordem;
-            prefeitura.StatusId = manter.Status;
-            prefeitura.DocumentosId = manter.DocumentosId;
-            prefeitura.Documentos = FormatarParaModeloDocumentos(manter);
+            Prefeitura prefeituraModelo = new Prefeitura();
+            prefeituraModelo.Id = manterView.Id;
+            prefeituraModelo.Nome = manterView.Nome;
+            prefeituraModelo.Aderencia = manterView.Aderencia;
+            prefeituraModelo.Ordem = manterView.Ordem;
+            prefeituraModelo.StatusId = manterView.Status;
+            prefeituraModelo.DocumentosId = manterView.DocumentosId;
+            prefeituraModelo.Documentos = FormatarParaDocumentosModelo(manterView);
 
-            prefeitura.Validar();
+            prefeituraModelo.Validar();
             
-            if (prefeitura.BuscarRegrasDeNegocioInvalidas().Count() > 0)
+            if (prefeituraModelo.BuscarRegrasDeNegocioInvalidas().Count() > 0)
             {
-                foreach (var item in prefeitura.BuscarRegrasDeNegocioInvalidas())
+                foreach (var item in prefeituraModelo.BuscarRegrasDeNegocioInvalidas())
                 {
-                    manter.ErrosMenssagens.Add(item.Regra);
+                    manterView.MenssagensDeErro.Add(item.Regra);
                 }
             }
             else
             {
                 PrefeituraServico prefeituraServico = new PrefeituraServico();
-                prefeituraServico.AdicionarPrefeitura(prefeitura);
+                prefeituraServico.AdicionarPrefeitura(prefeituraModelo);
             }
         }
 
-        private static Documentos FormatarParaModeloDocumentos(Manter manter)
+        private static Documentos FormatarParaDocumentosModelo(Manter manterView)
         {
-            Documentos documentos = new Documentos();
+            Documentos documentosModelo = new Documentos();
             
-            if (manter.DocumentosId != 0)
-                documentos.Id = manter.DocumentosId;
+            if (manterView.DocumentosId != 0)
+                documentosModelo.Id = manterView.DocumentosId;
 
-            NameValueCollection nameValueCollection = manter.Documentos;
+            NameValueCollection documentosViewCollection = manterView.Documentos;
 
-            foreach (var item in nameValueCollection.AllKeys)
+            foreach (var item in documentosViewCollection.AllKeys)
             {
                 if (item.Contains("LDO"))
-                    documentos.LDO = true;
+                    documentosModelo.LDO = true;
                 if (item.Contains("BF"))
-                    documentos.BF = true;
+                    documentosModelo.BF = true;
                 if (item.Contains("BP"))
-                    documentos.BP = true;
+                    documentosModelo.BP = true;
                 if (item.Contains("RGF"))
-                    documentos.RGF = true;
+                    documentosModelo.RGF = true;
                 if (item.Contains("RREO"))
-                    documentos.RREO = true;
+                    documentosModelo.RREO = true;
                 if (item.Contains("PPA"))
-                    documentos.PPA = true;
+                    documentosModelo.PPA = true;
                 if (item.Contains("BO"))
-                    documentos.BO = true;
+                    documentosModelo.BO = true;
                 if (item.Contains("LC"))
-                    documentos.LC = true;
+                    documentosModelo.LC = true;
                 if (item.Contains("Painel Financeiro"))
-                    documentos.PainelFinanceiro = true;
+                    documentosModelo.PainelFinanceiro = true;
                 if (item.Contains("Parecer TCE"))
-                    documentos.ParecerTCE = true;
+                    documentosModelo.ParecerTCE = true;
             }
 
-            return documentos;
+            return documentosModelo;
         }
 
-        private static NameValueCollection FormatarDocumentosParaFormulario(Documentos documentos)
+        private static NameValueCollection FormatarDocumentosParaCollection(Documentos documentosModelo)
         {
             NameValueCollection nameValueCollection = new NameValueCollection();
 
-            nameValueCollection.Add("LDO", documentos.LDO.ToString());
-            nameValueCollection.Add("BF", documentos.BF.ToString());
-            nameValueCollection.Add("BP", documentos.BP.ToString());
-            nameValueCollection.Add("RGF", documentos.RGF.ToString());
-            nameValueCollection.Add("RREO", documentos.RREO.ToString());
-            nameValueCollection.Add("PPA", documentos.PPA.ToString());
-            nameValueCollection.Add("BO", documentos.BO.ToString());
-            nameValueCollection.Add("LC", documentos.LC.ToString());
-            nameValueCollection.Add("Painel Financeiro", documentos.PainelFinanceiro.ToString());
-            nameValueCollection.Add("Parecer TCE", documentos.ParecerTCE.ToString());
+            nameValueCollection.Add("LDO", documentosModelo.LDO.ToString());
+            nameValueCollection.Add("BF", documentosModelo.BF.ToString());
+            nameValueCollection.Add("BP", documentosModelo.BP.ToString());
+            nameValueCollection.Add("RGF", documentosModelo.RGF.ToString());
+            nameValueCollection.Add("RREO", documentosModelo.RREO.ToString());
+            nameValueCollection.Add("PPA", documentosModelo.PPA.ToString());
+            nameValueCollection.Add("BO", documentosModelo.BO.ToString());
+            nameValueCollection.Add("LC", documentosModelo.LC.ToString());
+            nameValueCollection.Add("Painel Financeiro", documentosModelo.PainelFinanceiro.ToString());
+            nameValueCollection.Add("Parecer TCE", documentosModelo.ParecerTCE.ToString());
 
             return nameValueCollection;
         }

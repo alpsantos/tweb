@@ -22,15 +22,8 @@ namespace TWeb.Administracao.Prefeituras
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ceedfc'");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=''");
                 e.Row.Attributes.Add("style", "cursor:pointer;");
-                //e.Row.Attributes.Add("onclick", "location='manter.aspx?id=" + e.Row.Cells[0].Text + "'");
                 e.Row.Attributes.Add("onclick", "location='manter.aspx?id=" + ((HiddenField)e.Row.Cells[0].FindControl("Id")).Value + "'");
-
             }
-        }
-
-        protected void GridViewListarPreituras_RowCreated (object sender, GridViewRowEventArgs e)
-        {
-            e.Row.Cells[0].Visible = false;
         }
     }
 }

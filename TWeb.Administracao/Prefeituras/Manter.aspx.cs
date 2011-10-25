@@ -10,7 +10,7 @@ namespace TWeb.Administracao.Prefeituras
         public Manter()
         {
             _manterServico = new ManterServico();
-             ErrosMenssagens = new List<string>();
+             MenssagensDeErro = new List<string>();
         }
 
         private ManterServico _manterServico;
@@ -60,7 +60,7 @@ namespace TWeb.Administracao.Prefeituras
             get { return RetornaDocumentos(); }
         }
 
-        public List<String> ErrosMenssagens { get; set; }
+        public List<String> MenssagensDeErro { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -124,7 +124,7 @@ namespace TWeb.Administracao.Prefeituras
                 else
                     _manterServico.AtualizarPrefeitura(this);
 
-                ExibirMenssagemRetorno(this.ErrosMenssagens);
+                ExibirMenssagemRetorno(this.MenssagensDeErro);
             }
         }
 
