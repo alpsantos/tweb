@@ -124,24 +124,24 @@ namespace TWeb.Administracao.Prefeituras
                 else
                     _manterServico.AtualizarPrefeitura(this);
 
-                Validar(this.ErrosMenssagens);
-
+                ExibirMenssagemRetorno(this.ErrosMenssagens);
             }
-
         }
 
-        private void Validar(List<string> errosMenssagens)
+        private void ExibirMenssagemRetorno(List<string> errosMenssagens)
         {
             if (errosMenssagens.Count > 0)
             {
                 ErrosRepeater.DataSource = errosMenssagens;
                 ErrosRepeater.DataBind();
+                SucessoPanel.Visible = false;
+                ErrosRepeater.Visible = true;
             }
             else
             {
-                SucessoMenssagem.DataBind();
+                SucessoPanel.Visible = true;
+                ErrosRepeater.Visible = false;
             }
         }
-
     }
 }

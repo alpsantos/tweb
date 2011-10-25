@@ -6,22 +6,17 @@
     <fieldset>
 		<legend>Detalhes da prefeitura</legend>
 
-            <asp:Repeater ID="ErrosRepeater" runat="server">
-                <ItemTemplate>
-                    <div class="errors">
-                        <%# Container.DataItem %>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
-
-        <asp:Repeater ID="SucessoMenssagem" runat="server">
+        <asp:Repeater ID="ErrosRepeater" runat="server">
             <ItemTemplate>
-                <div class="errors">
-		            <p>Os dados foram salvos com sucesso!</p>
-	            </div>
+                <div class="menssagem-erro">
+                    <p><%# Container.DataItem %></p>
+                </div>
             </ItemTemplate>
         </asp:Repeater>
 
+        <asp:Panel ID="SucessoPanel" runat="server" Visible="false" CssClass="menssagem-sucesso">
+            <p>Os dados foram salvos com sucesso!</p>
+        </asp:Panel>
 
         <asp:HiddenField runat="server" ID="IdHiddenField"/>
         <div>

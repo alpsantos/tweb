@@ -331,11 +331,15 @@ div.accountInfo
     display: none;
 }
 
+
+div.menssagem-erro { margin: 0 0 10px 0; padding: 5px 10px; border: #FC6 1px solid; background-color: #FFC; }
+div.menssagem-erro p { margin: 10px; color: #C00; font-style: normal; font-weight: bold;}
+
+div.menssagem-sucesso { margin: 0 0 10px 0; padding: 5px 10px; border: #D0F5A9 1px solid; background-color: #ECF8E0; }
+div.menssagem-sucesso p { margin: 10px; color: #666666; font-style: normal; font-weight: bold;}
+
 /* Form styles */
 
-div.errors { margin: 0 0 10px 0; padding: 5px 10px; border: #FC6 1px solid; background-color: #FFC; }
-div.errors p { margin: 0; }
-div.errors p em { color: #C00; font-style: normal; font-weight: bold; }
 
 div.form-container  p { margin: 0; }
 div.form-container  p.note { margin-left: 170px; font-size: 90%; color: #333; }
