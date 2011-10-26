@@ -1,27 +1,67 @@
-﻿using System.Web.Mvc;
+﻿using System;
 using System.Linq;
-using TWeb.Portal.Models;
+using System.Web.Mvc;
 using TWeb.Portal.ViewModel;
 using TWeb.Repositorio;
+using TWeb.Site.Atributos;
 using TWeb.Site.Extensao;
-using System;
 using TWeb.Site.Models;
-using TWeb.Site.Controllers;
+using System.Collections.Generic;
 
 namespace TWeb.Portal.Controllers
 {
     public class PrefeituraController : Controller
     {
-        public ActionResult Pagina(int? id)
+        private int _quantidadePaginacaoExibir = 7;
+        private int _quantidadePaginaExibir = 5;
+
+        [HttpPost]
+        [ActionName("Pagina")]
+        [AceitarParametros(Nome = "button", Valor = "Buscar")]
+        public ActionResult BuscarPrefeituras(string busca)
+        {
+            return Pagina(1, busca);
+        }
+
+        public ActionResult Pagina(int? id, string busca)
         {
             var homeViewModel = new HomeViewModel();
 
-            int quantidadePaginaExibir = 5;
+            var indicePagina = id == null ? 1 : (int)id;
 
-            int quantidadePaginacaoExibir = 7;
+            Dictionary<string, string> parametros = new Dictionary<string, string>();
 
-            var indicePagina = id == null ? 1: (int)id;
+            parametros.Add("busca", busca);
 
+            MontarView(homeViewModel, indicePagina, parametros);
+
+            return View(homeViewModel);
+        }
+
+        public ActionResult Paginacao(TWeb.Site.ViewModel.Paginacao paginacao)
+        {
+            return PartialView("PaginacaoView", paginacao);
+        }
+
+        public ActionResult Prefeituras(Prefeitura prefeitura)
+        {
+            return PartialView("Prefeitura", prefeitura);
+        }
+
+        private void MontarView(HomeViewModel homeViewModel, int indicePagina, Dictionary<string, string> parametros)
+        {
+            if (string.IsNullOrEmpty(parametros["busca"]))
+            {
+                MontarView(homeViewModel, indicePagina, null, parametros);
+            }
+            else
+            {
+                MontarView(homeViewModel, indicePagina, pref => pref.Nome.StartsWith(parametros["busca"]), parametros);
+            }
+        }
+
+        private void MontarView(HomeViewModel homeViewModel, int indicePagina, Func<Modelo.Prefeitura, bool> expressao, Dictionary<string,string> parametros)
+        {
             PrefeituraRepositorio prefeituraRepositorio = new PrefeituraRepositorio();
 
             homeViewModel.TotalPrefeitura = prefeituraRepositorio.BuscarColecao(null).Count();
@@ -30,7 +70,7 @@ namespace TWeb.Portal.Controllers
 
             homeViewModel.TotalPrefeiturasPendentes = prefeituraRepositorio.BuscarColecao(pref => pref.Aderencia < 75).Count();
 
-            homeViewModel.Prefeituras = prefeituraRepositorio.BuscarColecao(null).Paginacao(indicePagina, quantidadePaginaExibir).ToList().Conveter();
+            homeViewModel.Prefeituras = prefeituraRepositorio.BuscarColecao(expressao).Paginacao(indicePagina, _quantidadePaginaExibir).ToList().Conveter();
 
             ///////////// configuração da paginação /////////////
             homeViewModel.Paginacao = new Site.ViewModel.Paginacao();
@@ -39,36 +79,24 @@ namespace TWeb.Portal.Controllers
 
             homeViewModel.Paginacao.Action = "Pagina";
 
+            homeViewModel.Paginacao.Parametros = parametros;
+
             homeViewModel.Paginacao.IndiceAtual = indicePagina;
 
-            homeViewModel.Paginacao.TotalRegistro = homeViewModel.TotalPrefeitura;
+            homeViewModel.Paginacao.TotalRegistro = prefeituraRepositorio.BuscarColecao(expressao).Count();
 
-            homeViewModel.Paginacao.QuantidadeRegistroExibicao = quantidadePaginaExibir;
+            homeViewModel.Paginacao.QuantidadeRegistroExibicao = _quantidadePaginaExibir;
 
-            homeViewModel.Paginacao.QuantidadePaginacaoExibicao = quantidadePaginacaoExibir;
-       
-            return View(homeViewModel);
+            homeViewModel.Paginacao.QuantidadePaginacaoExibicao = _quantidadePaginacaoExibir;
         }
 
-        public ActionResult Prefeituras(Prefeitura prefeitura)
-        {
-            return PartialView("Prefeitura", prefeitura);
-        }
+        #region Ajax
 
-        public ActionResult Paginacao(TWeb.Site.ViewModel.Paginacao paginacao)
-        {
-            return PartialView("PaginacaoView", paginacao);
-        }
-
-
-
-        //////////////////////////////////////// AJAX //////////////////////////////////////////
         [HttpPost]
         public JsonResult PaginacaoPrefeitura(int? paginacao)
         {
             try
             {
-                System.Threading.Thread.Sleep(1000);
                 PrefeituraRepositorio prefeituraRepositorio = new PrefeituraRepositorio();
 
                 int pagina = paginacao == null ? 1 : (int)paginacao;
@@ -88,7 +116,7 @@ namespace TWeb.Portal.Controllers
         {
             PrefeituraRepositorio prefeituraRepositorio = new PrefeituraRepositorio();
 
-            var prefeiturasEncontradas = prefeituraRepositorio.BuscarColecao(pref => 
+            var prefeiturasEncontradas = prefeituraRepositorio.BuscarColecao(pref =>
                 pref.Nome.StartsWith(nomePrefeitura) ||
                 pref.Nome.Contains(nomePrefeitura) ||
                 pref.Nome.EndsWith(nomePrefeitura));
@@ -96,5 +124,7 @@ namespace TWeb.Portal.Controllers
             var r = prefeiturasEncontradas.ToList().Conveter();
             return Json(prefeiturasEncontradas.ToList().Conveter());
         }
+
+        #endregion
     }
 }

@@ -62,6 +62,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Atributos\AceitarParametrosAttribute.cs" />
     <Compile Include="Controllers\PrefeituraController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Extensao\Conversao.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Models\Documento.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Prefeitura.cs" />
