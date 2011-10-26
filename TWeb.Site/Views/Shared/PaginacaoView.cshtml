@@ -1,0 +1,48 @@
+﻿@model TWeb.Site.ViewModel.Paginacao
+@if (Model.IndiceAtual > 1 && Model.TotalPaginacao > Model.QuantidadePaginacaoExibicao + 1)
+{
+    @Html.ActionLink("Início", Model.Action, new { id = 1, busca = Model.Parametros["busca"] })
+    @Html.ActionLink("Anterior", Model.Action, new { id = Model.IndiceAtual - 1, busca = Model.Parametros["busca"] })
+}
+@{
+    var indexIncrementador = 0;
+    var indexFinal = 0;
+
+    if (Model.TotalPaginacao < 2)
+    {
+        return;
+    }
+    else if (Model.IndiceAtual < Model.IndiceMedio)
+    {
+        indexIncrementador = 1;
+        indexFinal = Model.TotalPaginacao > Model.QuantidadePaginacaoExibicao ? Model.QuantidadePaginacaoExibicao : Model.TotalPaginacao;
+    }
+    else if ((Model.IndiceAtual + Model.IndiceMedio) > Model.TotalPaginacao)
+    {
+        var diferenca = Model.TotalPaginacao - Model.QuantidadePaginacaoExibicao;
+        indexIncrementador = diferenca < 1 ? 1 : diferenca;
+        indexFinal = Model.TotalPaginacao;
+    }
+    else
+    {
+        indexIncrementador = Model.IndiceAtual - Model.IndiceMedio;
+        indexFinal = Model.IndiceAtual + Model.IndiceMedio;
+    }
+
+    for (; indexIncrementador <= indexFinal; indexIncrementador++)
+    {
+        if (indexIncrementador == Model.IndiceAtual)
+        {
+    <a href="" class="atual" disabled="disabled">@indexIncrementador</a>
+        }
+        else
+        {
+    <a href="@Url.Action(@Model.Action, new { id = indexIncrementador, busca = Model.Parametros["busca"] })">@indexIncrementador</a>
+        }
+    }
+}
+@if (Model.IndiceAtual != Model.TotalPaginacao && Model.TotalPaginacao > Model.QuantidadePaginacaoExibicao + 1)
+{
+    @Html.ActionLink("Próximo", Model.Action, new { id = Model.IndiceAtual + 1, busca = Model.Parametros["busca"] })
+    @Html.ActionLink("Último", Model.Action, new { id = Model.TotalPaginacao, busca = Model.Parametros["busca"] })
+}

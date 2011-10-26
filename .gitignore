@@ -8,3 +8,4 @@
 *.vscc 
 *.vssscc
 !/packages/*/lib/*.dll
+*/Web*config

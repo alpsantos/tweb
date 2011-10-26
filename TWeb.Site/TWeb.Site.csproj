@@ -62,19 +62,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Atributos\AceitarParametrosAttribute.cs" />
+    <Compile Include="Controllers\PrefeituraController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Extensao\Conversao.cs" />
     <Compile Include="Extensao\PaginaExtensao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Models\Documento.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Prefeitura.cs" />
     <Compile Include="Models\RSS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="ViewModel\Paginacao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\Americana-SP.jpg" />
@@ -145,10 +148,16 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Prefeitura\Pagina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Post\PostsRecentes.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prefeitura\Prefeitura.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\PaginacaoView.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

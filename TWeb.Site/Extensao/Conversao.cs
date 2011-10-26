@@ -1,7 +1,5 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using TWeb.Site.Models;
 
 namespace TWeb.Site.Extensao
 {
@@ -23,18 +21,20 @@ namespace TWeb.Site.Extensao
                 prefeituraModel.Latitude = prefeituraDominio.Latitude;
                 prefeituraModel.Brasao = prefeituraDominio.Brasao;
 
-                prefeituraModel.Documento = new Models.Documento();
+                prefeituraModel.Documentos = new List<Models.Documento>();
 
-                prefeituraDominio.Documentos.BF = prefeituraDominio.Documentos.BF;
-                prefeituraDominio.Documentos.BO = prefeituraDominio.Documentos.BO;
-                prefeituraDominio.Documentos.BP = prefeituraDominio.Documentos.BP;
-                prefeituraDominio.Documentos.LC = prefeituraDominio.Documentos.LC;
-                prefeituraDominio.Documentos.LDO = prefeituraDominio.Documentos.LDO;
-                prefeituraDominio.Documentos.PPA = prefeituraDominio.Documentos.PPA;
-                prefeituraDominio.Documentos.RGF = prefeituraDominio.Documentos.RGF;
-                prefeituraDominio.Documentos.RREO = prefeituraDominio.Documentos.RREO;
-                prefeituraDominio.Documentos.PainelFinanceiro = prefeituraDominio.Documentos.PainelFinanceiro;
-                prefeituraDominio.Documentos.ParecerTCE = prefeituraDominio.Documentos.ParecerTCE;
+                var pd = prefeituraDominio;
+
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.BF, pd.Documentos.BF));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.BO, pd.Documentos.BO));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.BP, pd.Documentos.BP));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.LC, pd.Documentos.LC));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.LDO, pd.Documentos.LDO));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.PPA, pd.Documentos.PPA));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.RGF, pd.Documentos.RGF));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.RREO, pd.Documentos.RREO));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.PainelFinanceiro, pd.Documentos.PainelFinanceiro));
+                prefeituraModel.Documentos.Add(new Documento(TipoDocumento.ParecerTCE, pd.Documentos.ParecerTCE));
 
                 prefeiturasModel.Add(prefeituraModel);
             }
