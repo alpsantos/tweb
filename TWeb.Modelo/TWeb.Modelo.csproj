@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="IPrefeituraRepositorio.cs" />
     <Compile Include="Usuario.cs" />
-    <Compile Include="Documento.cs" />
+    <Compile Include="Documentos.cs" />
     <Compile Include="Prefeitura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Status.cs" />
