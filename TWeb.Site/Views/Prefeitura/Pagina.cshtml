@@ -17,10 +17,9 @@
         $(document).ready(function () {
             //carregarPosts();
             //buscarPrefeitura(0);
-            $("#div-fixo-loading").fadeOut();
             ConfiguraProgressBar();
             $('#div-conteudo').css('min-height', $(window).height() - 80);
-            $('#cmd-buscar').click(buscarPrefeituras);
+            //$('#cmd-buscar').click(buscarPrefeituras);
         });
 
         $(window).resize(function () {
@@ -47,7 +46,7 @@
     </script>
 </head>
 <body>
-    <div id="div-fixo-loading" class="bordaBox">
+    <div id="div-fixo-loading" class="bordaBox" style="display:none">
         <div id="div-fixo-conteudo" class="conteudo">
             carregando...
         </div>
@@ -65,8 +64,11 @@
                 <h1>
                     O TOMWEB dispõe de @Model.TotalPrefeitura Municípios monitorados</h1>
                 <div id="div-busca-fundocampo">
-                    <input type="text" name="busca" id="busca" />
-                    <input id="cmd-buscar" type="button" value="Buscar" />
+                    @using (Html.BeginForm())
+                    {
+                        <input type="text" name="busca" id="busca" />
+                        <input id="cmd-buscar" type="submit" name="button" value="Buscar" />
+                    }
                 </div>
                 <span class="span-total-municipio">Total de Municipios: @Model.TotalPrefeitura</span>
                 <span class="span-total-regulamentados">Municipios regulamentados: @Model.TotalPrefeiturasRegulamentados</span>
@@ -105,9 +107,6 @@
                 <li><a href="#">Advertise</a></li>
                 <li><a href="#">About</a></li>
             </ul>
-            <a class="imgCloud" href="http://www.cloudideas.com.br">
-                <img alt="Cloud Ideas" title="Cloud Ideas" width="100" height="28" src="@Url.Content("~/content/images/MiniLogo.jpg")"/>
-            </a>
         </div>
     </div>
 </body>

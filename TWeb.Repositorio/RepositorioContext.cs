@@ -14,7 +14,7 @@ namespace TWeb.Repositorio
         { }
 
         public DbSet<Prefeitura> Prefeitura { get; set; }
-        public DbSet<Documentos> Documentos { get; set; }
+        public DbSet<Documento> Documentos { get; set; }
 
         public DbSet<Usuario> Usuario { get; set; }
 
@@ -30,10 +30,10 @@ namespace TWeb.Repositorio
                 .HasForeignKey(u => u.DocumentosId);
 
 
-            builder.Entity<Documentos>().Map(m => m.ToTable("Documentos"));
+            builder.Entity<Documento>().Map(m => m.ToTable("Documentos"));
             //builder.Entity<Prefeitura>().Ignore(e => e.Prefeito);
 
-            builder.Entity<Documentos>().HasKey(x => x.Id).Property(x => x.Id).
+            builder.Entity<Documento>().HasKey(x => x.Id).Property(x => x.Id).
                 HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
 

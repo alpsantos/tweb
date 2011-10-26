@@ -51,11 +51,8 @@
 /*############################# Estático ##################################*/
 #div-paginacao2
 {
-    padding:40px 0px 0px 100px;
-    left:70%;
-    width:55%;
-    right:100px;
-    text-align:right;
+    padding:40px 0px 0px 30%;
+    text-align:center;
     margin-left: auto;
     margin-right: auto;
     height:35px;

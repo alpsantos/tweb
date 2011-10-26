@@ -21,7 +21,7 @@ namespace TWeb.Modelo
         public Status Status { get; set; }
 
         public int DocumentosId { get; set; }
-        public virtual Documentos Documentos { get; set; }
+        public virtual Documento Documentos { get; set; }
 
         public override void Validar()
         {

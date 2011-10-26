@@ -3,6 +3,8 @@
     @{
         var tipoProgressBarCss = string.Empty;
         var prefeitura = Model;
+        var listDocumentosRegulamentados = Model.Documentos.Where(d => d.Pendente);
+        var listDocumentosPendentes = Model.Documentos.Where(d => !d.Pendente);
     }
 
     <li>
@@ -11,13 +13,35 @@
         <label class="label-relatorios-criados">
             Relatórios Criados:</label>
         <label class="label-links-criados">
-            <a href="#">PPA</a>, <a href="#">LDO</a>, <a href="#">BO</a>, <a href="#">LC</a>,
-            <a href="#">Painel Financeiro</a>
+        @foreach (var doc in listDocumentosRegulamentados)
+        {
+          if (listDocumentosRegulamentados.ToList().IndexOf(doc) ==
+                    (listDocumentosRegulamentados.Count() -1))
+                {
+                    <text><a href="@doc.linkDocumento">@doc.Descricao</a></text>
+                }
+                else
+                {
+                    <text><a href="@doc.linkDocumento">@doc.Descricao</a>,</text>
+                }  
+        }
         </label>
         <label class="label-relatorios-pendentes">
             Relatórios Pendentes:</label>
         <label class="label-links-pendentes">
-            LOA, BF, BP, RGF, RREO, Relatório e Parecer do TCE
+
+            @foreach (var doc in listDocumentosPendentes)
+            {
+                if (listDocumentosPendentes.ToList().IndexOf(doc) ==
+                    (listDocumentosPendentes.Count() -1))
+                {
+                    @doc.Descricao
+                }
+                else
+                {
+                    @doc.Descricao<text>, </text>
+                }
+            }
         </label>
         @if (@prefeitura.Aderencia < 20)
         {
