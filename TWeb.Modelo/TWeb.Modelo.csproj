@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUsuarioRepositorio.cs" />
     <Compile Include="IPrefeituraRepositorio.cs" />
+    <Compile Include="Perfil.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Documentos.cs" />
     <Compile Include="Prefeitura.cs" />

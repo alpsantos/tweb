@@ -23,7 +23,7 @@ namespace TWeb.Servico
 
         public void AdicionarPrefeitura(Prefeitura prefeitura)
         {
-            ExceptionSePrefeituraForInvalida(prefeitura);
+            //ExceptionSePrefeituraForInvalida(prefeitura);
 
             _prefeituraRepositorio.Adicionar(prefeitura);
             _prefeituraRepositorio.Salvar();
@@ -56,7 +56,7 @@ namespace TWeb.Servico
             _prefeituraRepositorio.Salvar();
         }
 
-        public void ExceptionSePrefeituraForInvalida(Prefeitura prefeitura)
+        public void ExceptionSePrefeituraForInvalida(Prefeitura prefeitura) // todo : analisar se ainda vai usar essa abordagem
         {
             if (prefeitura.BuscarRegrasDeNegocioInvalidas().Count() > 0)
             {

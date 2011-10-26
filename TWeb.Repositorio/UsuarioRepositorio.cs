@@ -8,53 +8,53 @@ using TWeb.Modelo;
 
 namespace TWeb.Repositorio
 {
-    public class PrefeituraRepositorio : IPrefeituraRepositorio
+    public class UsuarioRepositorio : IUsuarioRepositorio
     {
         private IConfiguracaoAplicacao _configuracaoDaAplicacao;
         private RepositorioContext _contexto;
 
-        public PrefeituraRepositorio()
+        public UsuarioRepositorio()
         {
             ConfiguracaoDaAplicacaoFactory.InicializarConfiguracaoAplicacaoFactory(new WebConfigConfiguracaoAplicacao());
             _configuracaoDaAplicacao = ConfiguracaoDaAplicacaoFactory.BuscarConfiguracaoAplicacao();
             _contexto = new RepositorioContext(_configuracaoDaAplicacao.ConnectionString);
         }
 
-        public IEnumerable<Prefeitura> BuscarColecao(Func<Prefeitura, bool> expressao)
+        public IEnumerable<Usuario> BuscarColecao(Func<Usuario, bool> expressao)
         {
-            IEnumerable<Prefeitura> prefeituras;
+            IEnumerable<Usuario> usuarios;
 
             if (expressao == null)
-                prefeituras = _contexto.Prefeitura.ToList();
+                usuarios = _contexto.Usuario.ToList();
             else
-                prefeituras = _contexto.Prefeitura.Where(expressao).ToList();
+                usuarios = _contexto.Usuario.Where(expressao).ToList();
 
-            return prefeituras;
+            return usuarios;
         }
 
-        public Prefeitura Buscar(Func<Prefeitura, bool> expressao)
+        public Usuario Buscar(Func<Usuario, bool> expressao)
         {
-            Prefeitura prefeitura = _contexto.Prefeitura.Where(expressao).FirstOrDefault();
+            Usuario usuario = _contexto.Usuario.Where(expressao).FirstOrDefault();
 
-            return prefeitura;
+            return usuario;
         }
 
-        
-        public void Adicionar(Prefeitura entidade)
+
+        public void Adicionar(Usuario entidade)
         {
-            _contexto.Prefeitura.Add(entidade);
+            _contexto.Usuario.Add(entidade);
         }
 
-        public void Atualizar(Prefeitura entidade)
+        public void Atualizar(Usuario entidade)
         {
-            _contexto.Prefeitura.Attach(entidade);
+            _contexto.Usuario.Attach(entidade);
             _contexto.Entry(entidade).State = EntityState.Modified;
         }
 
-        public void Deletar(Prefeitura entidade)
+        public void Deletar(Usuario entidade)
         {
-            Prefeitura prefeitura = _contexto.Prefeitura.Find(entidade);
-            prefeitura.StatusId = 3; // todo: tirar esse hard coded
+            Usuario usuario = _contexto.Usuario.Find(entidade);
+            usuario.StatusId = 3; // todo: tirar esse hard coded
         }
 
         public void Salvar()

@@ -69,7 +69,7 @@ namespace TWeb.Administracao.Prefeituras
             else
             {
                 PrefeituraServico prefeituraServico = new PrefeituraServico();
-                prefeituraServico.AdicionarPrefeitura(prefeituraModelo);
+                prefeituraServico.AtualizarPrefeitura(prefeituraModelo);
             }
         }
 

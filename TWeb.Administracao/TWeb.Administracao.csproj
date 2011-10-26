@@ -68,6 +68,8 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Usuarios\Listagem.aspx" />
+    <Content Include="Usuarios\Manter.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -141,6 +143,22 @@
     </Compile>
     <Compile Include="Prefeituras\ManterServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuarios\Listagem.aspx.cs">
+      <DependentUpon>Listagem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Listagem.aspx.designer.cs">
+      <DependentUpon>Listagem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\ListagemServico.cs" />
+    <Compile Include="Usuarios\Manter.aspx.cs">
+      <DependentUpon>Manter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Manter.aspx.designer.cs">
+      <DependentUpon>Manter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\ManterServico.cs" />
     <Compile Include="Util\StatusHelper.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -172,9 +190,7 @@
       <Name>TWeb.Servico</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Usuarios\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

@@ -33,6 +33,8 @@
                     <Items>
                         <asp:MenuItem NavigateUrl="~/default.aspx" Text="Página Inicial"/>
                         <asp:MenuItem NavigateUrl="~/prefeituras/listagem.aspx" Text="Prefeituras"/>
+                        <asp:MenuItem NavigateUrl="~/usuarios/listagem.aspx" Text="Usuários"/>
+                        <asp:MenuItem NavigateUrl="~/glossario/manter.aspx" Text="Glossário"/>
                     </Items>
                 </asp:Menu>
             </div>
