@@ -13,6 +13,24 @@ namespace TWeb.Administracao.Usuarios {
     public partial class Listagem {
         
         /// <summary>
+        /// NomeBuscaTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NomeBuscaTextBox;
+        
+        /// <summary>
+        /// BuscarButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BuscarButton;
+        
+        /// <summary>
         /// GridViewListarUsuarios control.
         /// </summary>
         /// <remarks>

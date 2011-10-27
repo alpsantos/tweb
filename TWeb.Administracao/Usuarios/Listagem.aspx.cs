@@ -11,7 +11,6 @@ namespace TWeb.Administracao.Usuarios
         public string Email { get; set; }
         public int StatusId { get; set; }
 
-  
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +25,28 @@ namespace TWeb.Administracao.Usuarios
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=''");
                 e.Row.Attributes.Add("style", "cursor:pointer;");
                 e.Row.Attributes.Add("onclick", "location='manter.aspx?id=" + ((HiddenField)e.Row.Cells[0].FindControl("Id")).Value + "'");
+            }
+        }
+
+        protected void BuscaUsuario_Click(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                if (String.IsNullOrEmpty(NomeBuscaTextBox.Text))
+                {
+                    ObjectDataSourceBuscarUsuarios.SelectMethod = "BuscarUsuarios";
+                    ObjectDataSourceBuscarUsuarios.SelectParameters.Clear();
+                    GridViewListarUsuarios.DataBind();
+
+                }
+                else
+                {
+                    ObjectDataSourceBuscarUsuarios.SelectMethod = "BuscarUsuarios";
+
+                    ObjectDataSourceBuscarUsuarios.SelectParameters.Add("nome", NomeBuscaTextBox.Text);
+
+                    GridViewListarUsuarios.DataBind();
+                }
             }
         }
     }
