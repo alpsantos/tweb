@@ -32,19 +32,15 @@ namespace TWeb.Administracao.Usuarios
         {
             if (IsPostBack)
             {
+                ObjectDataSourceBuscarUsuarios.SelectParameters.Clear();
+
                 if (String.IsNullOrEmpty(NomeBuscaTextBox.Text))
                 {
-                    ObjectDataSourceBuscarUsuarios.SelectMethod = "BuscarUsuarios";
-                    ObjectDataSourceBuscarUsuarios.SelectParameters.Clear();
                     GridViewListarUsuarios.DataBind();
-
                 }
                 else
                 {
-                    ObjectDataSourceBuscarUsuarios.SelectMethod = "BuscarUsuarios";
-
                     ObjectDataSourceBuscarUsuarios.SelectParameters.Add("nome", NomeBuscaTextBox.Text);
-
                     GridViewListarUsuarios.DataBind();
                 }
             }
