@@ -9,7 +9,7 @@
     <div class="busca-novo-div">
         <label for="nome">Nome</label> 
         <asp:TextBox ID="NomeBuscaTextBox" size="50" runat="server"  />
-        <asp:Button runat="server" ID="BuscarButton"  CausesValidation="true" Text="Buscar" onclick="BuscaUsuario_Click" />
+        <asp:Button runat="server" ID="BuscarButton"  CausesValidation="true" Text="Buscar" onclick="BuscaPrefeitura_Click" />
         <input type="button" value="Novo" onclick="window.location.href='manter.aspx'" />
     </div>
 

@@ -47,13 +47,6 @@ namespace TWeb.Servico
             return usuario;
         }
 
-        public IEnumerable<Usuario> BuscarUsuarioPorNome(string nome)
-        {
-            IEnumerable<Usuario> usuarios = _usuarioRepositorio.BuscarColecao(x => x.Nome.Contains(nome)); 
-
-            return usuarios;
-        }
-
         public void AtualizarUsuario(Usuario usuario)
         {
             _usuarioRepositorio.Atualizar(usuario);

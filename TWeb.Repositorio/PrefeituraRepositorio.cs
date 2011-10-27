@@ -39,7 +39,6 @@ namespace TWeb.Repositorio
 
             return prefeitura;
         }
-
         
         public void Adicionar(Prefeitura entidade)
         {
@@ -62,7 +61,5 @@ namespace TWeb.Repositorio
         {
             _contexto.SaveChanges();
         }
-
-
     }
 }

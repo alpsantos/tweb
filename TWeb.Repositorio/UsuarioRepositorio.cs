@@ -40,7 +40,6 @@ namespace TWeb.Repositorio
             return usuario;
         }
 
-
         public void Adicionar(Usuario entidade)
         {
             _contexto.Usuario.Add(entidade);
@@ -62,7 +61,5 @@ namespace TWeb.Repositorio
         {
             _contexto.SaveChanges();
         }
-
-
     }
 }

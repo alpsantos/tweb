@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using TWeb.Portal.ViewModel;
 using TWeb.Repositorio;
@@ -60,7 +61,7 @@ namespace TWeb.Portal.Controllers
             }
         }
 
-        private void MontarView(HomeViewModel homeViewModel, int indicePagina, Func<Modelo.Prefeitura, bool> expressao, Dictionary<string,string> parametros)
+        private void MontarView(HomeViewModel homeViewModel, int indicePagina, Expression<Func<Modelo.Prefeitura, bool>> expressao, Dictionary<string,string> parametros)
         {
             PrefeituraRepositorio prefeituraRepositorio = new PrefeituraRepositorio();
 
