@@ -48,6 +48,9 @@
     <Compile Include="Prefeitura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Status.cs" />
+    <Compile Include="Util\LoginValidador.cs" />
+    <Compile Include="Util\EmailValidator.cs" />
+    <Compile Include="Util\SenhaValidador.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TWeb.Infra\TWeb.Infra.csproj">

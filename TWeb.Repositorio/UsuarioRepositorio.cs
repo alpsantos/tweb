@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using TOMWeb.Observatorio.Infra.Configuracao;
 using TWeb.Infra.Configuracao;
 using TWeb.Modelo;
@@ -20,7 +21,7 @@ namespace TWeb.Repositorio
             _contexto = new RepositorioContext(_configuracaoDaAplicacao.ConnectionString);
         }
 
-        public IEnumerable<Usuario> BuscarColecao(Func<Usuario, bool> expressao)
+        public IEnumerable<Usuario> BuscarColecao(Expression<Func<Usuario, bool>> expressao)
         {
             IEnumerable<Usuario> usuarios;
 
@@ -38,7 +39,6 @@ namespace TWeb.Repositorio
 
             return usuario;
         }
-
 
         public void Adicionar(Usuario entidade)
         {
@@ -61,7 +61,5 @@ namespace TWeb.Repositorio
         {
             _contexto.SaveChanges();
         }
-
-
     }
 }

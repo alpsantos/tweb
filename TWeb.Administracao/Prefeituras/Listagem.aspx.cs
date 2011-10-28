@@ -25,5 +25,23 @@ namespace TWeb.Administracao.Prefeituras
                 e.Row.Attributes.Add("onclick", "location='manter.aspx?id=" + ((HiddenField)e.Row.Cells[0].FindControl("Id")).Value + "'");
             }
         }
+
+        protected void BuscaPrefeitura_Click(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                ObjectDataSourceBuscarPrefeituras.SelectParameters.Clear();
+
+                if (String.IsNullOrEmpty(NomeBuscaTextBox.Text))
+                {
+                    ObjectDataSourceBuscarPrefeituras.DataBind();
+                }
+                else
+                {
+                    ObjectDataSourceBuscarPrefeituras.SelectParameters.Add("nome", NomeBuscaTextBox.Text);
+                    ObjectDataSourceBuscarPrefeituras.DataBind();
+                }
+            }
+        }
     }
 }

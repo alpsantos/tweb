@@ -6,6 +6,13 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <div class="busca-novo-div">
+        <label for="nome">Nome</label> 
+        <asp:TextBox ID="NomeBuscaTextBox" size="50" runat="server"  />
+        <asp:Button runat="server" ID="BuscarButton"  CausesValidation="true" Text="Buscar" onclick="BuscaPrefeitura_Click" />
+        <input type="button" value="Novo" onclick="window.location.href='manter.aspx'" />
+    </div>
+
     <asp:GridView  ID="GridViewListarPreituras" runat="server" Width="100%"
         OnRowDataBound="GridViewListarPreituras_RowDataBound" AllowPaging="True" AutoGenerateColumns="False" 
         DataSourceID="ObjectDataSourceBuscarPrefeituras" CssClass="tabela-gridview">

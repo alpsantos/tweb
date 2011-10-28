@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TWeb.Modelo;
 using TWeb.Servico;
 
@@ -6,14 +7,21 @@ namespace TWeb.Administracao.Usuarios
 {
     public class ListagemServico
     {
+        private UsuarioServico _usuarioServico;
+
+        public ListagemServico()
+        {
+            _usuarioServico = new UsuarioServico();
+        }
+
         public List<Listagem> BuscarUsuarios()
         {
-            UsuarioServico usuarioServico = new UsuarioServico();
-            IEnumerable<Usuario> listaPrefeituraModelo = usuarioServico.BuscarPrefeiturasPaginaInicial();
+            _usuarioServico = new UsuarioServico();
+            IEnumerable<Usuario> listaUsuarioModelo = _usuarioServico.BuscarUsuarios();
 
             List<Listagem> listagemView = new List<Listagem>();
 
-            foreach (var item in listaPrefeituraModelo)
+            foreach (var item in listaUsuarioModelo)
             {
                 Listagem view = new Listagem();
                 view.Id = item.Id;
@@ -26,6 +34,14 @@ namespace TWeb.Administracao.Usuarios
             }
 
             return listagemView;
+        }
+
+        public IEnumerable<Usuario> BuscarUsuarios(string nome)
+        {
+            _usuarioServico = new UsuarioServico();
+            IEnumerable<Usuario> listaUsuarioModelo = _usuarioServico.BuscarUsuariosPorNome(nome);
+
+            return listaUsuarioModelo;
         }
     }
 }

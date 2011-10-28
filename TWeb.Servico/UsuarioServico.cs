@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TWeb.Modelo;
 using TWeb.Repositorio;
 
@@ -24,9 +25,17 @@ namespace TWeb.Servico
             _usuarioRepositorio.Salvar();
         }
 
-        public IEnumerable<Usuario> BuscarPrefeiturasPaginaInicial()
+        public IEnumerable<Usuario> BuscarUsuarios()
         {
             IEnumerable<Usuario> usuarios = _usuarioRepositorio.BuscarColecao(null); // todo : trazer todo eh assim mesmo
+
+            return usuarios;
+        }
+
+
+        public IEnumerable<Usuario> BuscarUsuariosPorNome(string nome)
+        {
+            IEnumerable<Usuario> usuarios = _usuarioRepositorio.BuscarColecao(x => x.Nome.Contains(nome));
 
             return usuarios;
         }
@@ -38,17 +47,11 @@ namespace TWeb.Servico
             return usuario;
         }
 
-        public IEnumerable<Usuario> BuscarUsuarioPorNome(string nome)
-        {
-            IEnumerable<Usuario> usuarios = _usuarioRepositorio.BuscarColecao(x => x.Nome.Contains(nome)); 
-
-            return usuarios;
-        }
-
         public void AtualizarUsuario(Usuario usuario)
         {
             _usuarioRepositorio.Atualizar(usuario);
             _usuarioRepositorio.Salvar();
         }
+
     }
 }

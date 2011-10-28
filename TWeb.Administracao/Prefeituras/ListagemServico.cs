@@ -6,9 +6,16 @@ namespace TWeb.Administracao.Prefeituras
 {
     public class ListagemServico
     {
+        private PrefeituraServico prefeituraServico;
+
+        public ListagemServico()
+        {
+            prefeituraServico = new PrefeituraServico();
+        }
+
         public List<Listagem> BuscarPrefeituras()
         {
-            PrefeituraServico prefeituraServico = new PrefeituraServico();
+            prefeituraServico = new PrefeituraServico();
             IEnumerable<Prefeitura> listaPrefeituraModelo = prefeituraServico.BuscarPrefeiturasPaginaInicial();
 
             List<Listagem> listagemView = new List<Listagem>();
@@ -25,6 +32,14 @@ namespace TWeb.Administracao.Prefeituras
             }
 
             return listagemView;
+        }
+
+        public IEnumerable<Prefeitura> BuscarPrefeituras(string nome)
+        {
+            prefeituraServico = new PrefeituraServico();
+            IEnumerable<Prefeitura> listaPrefeituraModelo = prefeituraServico.BuscarPrefeiturasPorNome(nome);
+
+            return listaPrefeituraModelo;
         }
     }
 }

@@ -21,27 +21,26 @@
 
         <asp:HiddenField runat="server" ID="IdHiddenField"/>
         <div>
-            <label>Nome<em>*</em></label> 
+            <label for="nome">Nome<em>*</em></label> 
             <asp:TextBox ID="NomeTextBox" size="50" runat="server"  />
         </div>
         <div>
-            <label>Login<em>*</em></label> 
+            <label for="login">Login<em>*</em></label> 
             <asp:TextBox ID="LoginTextBox" size="50" runat="server"  />
         </div>               
 		<div>
-            <label for="address2">Email<em>*</em></label> 
+            <label for="email">Email<em>*</em></label> 
             <asp:TextBox ID="EmailTextBox" runat="server" size="50"  />
         </div>
         <div>
-            <label for="ordem">Senha<em>*</em></label> 
+            <label for="senha">Senha<em>*</em></label> 
             <asp:TextBox ID="SenhaTextBox" runat="server" size="50"  />
         </div>
 		<div>
-			<label for="type">Status</label>
+			<label for="status">Status</label>
             <asp:DropDownList ID="StatusDropDownList" runat="server">
                 <asp:ListItem Value="1">Ativo</asp:ListItem>
                 <asp:ListItem Value="2">Inativo</asp:ListItem>
-                <asp:ListItem Value="3">Indeterninado</asp:ListItem>
             </asp:DropDownList>
 		</div>
         <div class="buttonrow">
