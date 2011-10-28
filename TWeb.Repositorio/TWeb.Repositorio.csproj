@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlossarioRepositorio.cs" />
     <Compile Include="UsuarioRepositorio.cs" />
     <Compile Include="RepositorioContext.cs" />
     <Compile Include="PrefeituraRepositorio.cs" />

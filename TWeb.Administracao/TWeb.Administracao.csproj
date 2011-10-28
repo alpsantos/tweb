@@ -60,6 +60,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Glossario\Manter.aspx" />
     <Content Include="Prefeituras\Manter.aspx" />
     <Content Include="Prefeituras\Listagem.aspx" />
     <Content Include="Styles\Site.css" />
@@ -125,6 +126,14 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Glossario\ManterServico.cs" />
+    <Compile Include="Glossario\Manter.aspx.cs">
+      <DependentUpon>Manter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Glossario\Manter.aspx.designer.cs">
+      <DependentUpon>Manter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Prefeituras\ListagemServico.cs" />
     <Compile Include="Prefeituras\Manter.aspx.cs">

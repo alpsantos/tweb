@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Glossario.cs" />
+    <Compile Include="IGlossarioRepositorio.cs" />
     <Compile Include="IUsuarioRepositorio.cs" />
     <Compile Include="IPrefeituraRepositorio.cs" />
     <Compile Include="Perfil.cs" />
