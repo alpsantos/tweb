@@ -20,6 +20,7 @@ body
     float: left;
     background-color: #3a9236;
     z-index: -1;
+    left:0px;
 }
 #div-tudo
 {
@@ -108,6 +109,7 @@ body
     top: -1px;
     z-index: 1;
 }
+
 #div-busca h1
 {
     float: left;
@@ -123,6 +125,18 @@ body
     padding: 0px;
     margin-top: 20px;
 }
+
+BODY.ie6 #div-busca h1,
+BODY.ie7 #div-busca h1,
+BODY.ie8 #div-busca h1,
+BODY.ie9 #div-busca h1
+{
+    filter: progid:DXImageTransform.Microsoft.Chroma(Color=#cccccc)
+	        progid:DXImageTransform.Microsoft.DropShadow(OffX=2, OffY=2, Color=#398735);
+}
+
+
+
 #div-busca-fundocampo
 {
     width: 565px;
@@ -178,6 +192,7 @@ body
     font-family: Arial;
     font-size: 12px;
     font-weight: bold;
+    color:White;
 }
 #div-busca .span-total-regulamentados
 {
@@ -189,6 +204,7 @@ body
     font-weight: bold;
     width: 545px;
     text-align: center;
+    color:White;
 }
 #div-busca .span-total-pendentes
 {
@@ -198,6 +214,7 @@ body
     font-family: Arial;
     font-size: 12px;
     font-weight: bold;
+    color:White;
 }
 /*################################# RESULTADO ####################################################*/
 #div-resultado ul
@@ -334,7 +351,7 @@ body
     list-style: none;
     margin-top: 20px;
     margin-left: 25px;
-    width: 500px;
+    width: 95%;
 }
 #div-blog ul li h3 a
 {
