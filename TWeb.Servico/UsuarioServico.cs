@@ -40,6 +40,13 @@ namespace TWeb.Servico
             return usuarios;
         }
 
+        public Usuario BuscarUsuarioPorUsuario(string nome)
+        {
+            Usuario usuario = _usuarioRepositorio.Buscar(x => x.Login == nome);
+
+            return usuario;
+        }
+
         public Usuario BuscarUsuario(int id)
         {
             Usuario usuario = _usuarioRepositorio.Buscar(x => x.Id == id);

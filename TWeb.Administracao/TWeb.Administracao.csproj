@@ -72,6 +72,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Autenticacao\Default.aspx" />
     <Content Include="Glossario\Manter.aspx" />
     <Content Include="Prefeituras\Manter.aspx" />
     <Content Include="Prefeituras\Listagem.aspx" />
@@ -128,6 +129,14 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Autenticacao\DefaultServico.cs" />
+    <Compile Include="Autenticacao\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Autenticacao\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
