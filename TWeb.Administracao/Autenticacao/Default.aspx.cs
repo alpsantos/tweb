@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Security;
 
 namespace TWeb.Administracao.Autenticacao
 {
@@ -32,6 +33,7 @@ namespace TWeb.Administracao.Autenticacao
             if (UsuarioValido())
             {
                 Response.Redirect("../prefeituras/listagem.aspx");
+                FormsAuthentication.RedirectFromLoginPage(this.Usuario, true);
             }
             else
             {
