@@ -21,7 +21,12 @@ namespace TWeb.Administracao.Autenticacao
         public string MenssagemDeErro { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
-        { }
+        {
+            string returnUrl = Request["ReturnUrl"];
+
+            if (returnUrl != null)
+                Response.Redirect("../autenticacao/", true);
+        }
 
         public Default()
         {
@@ -32,8 +37,8 @@ namespace TWeb.Administracao.Autenticacao
         {
             if (UsuarioValido())
             {
+                FormsAuthentication.SetAuthCookie(this.Usuario, true);
                 Response.Redirect("../prefeituras/listagem.aspx");
-                FormsAuthentication.RedirectFromLoginPage(this.Usuario, true);
             }
             else
             {

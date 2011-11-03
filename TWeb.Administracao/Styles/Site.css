@@ -274,7 +274,7 @@ div.accountInfo
     display: block;
     text-align: right;
     padding: 10px;
-    color: White;
+    color: #666666;
 }
 
 .loginDisplay a:link
