@@ -20,6 +20,8 @@ namespace TWeb.Repositorio
 
         public DbSet<Status> Status { get; set; }
 
+        public DbSet<Glossario> Glossario { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
 
@@ -38,6 +40,7 @@ namespace TWeb.Repositorio
 
 
             builder.Entity<Usuario>().Map(m => m.ToTable("Usuario"));
+            builder.Entity<Glossario>().Map(m => m.ToTable("Glossario"));
         }
     }
 }

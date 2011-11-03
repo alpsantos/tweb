@@ -6,10 +6,17 @@ namespace TWeb.Administracao.Usuarios
 {
     public class ManterServico
     {
+        private UsuarioServico _usuarioServico;
+
+        public ManterServico()
+        {
+            _usuarioServico = new UsuarioServico();
+        }
+
         public void BuscarUsuario(Manter manterView, int id)
         {
-            UsuarioServico usuarioServico = new UsuarioServico();
-            Usuario usuarioModelo = usuarioServico.BuscarUsuario(id);
+            
+            Usuario usuarioModelo = _usuarioServico.BuscarUsuario(id);
 
             manterView.Id = usuarioModelo.Id;
             manterView.Nome = usuarioModelo.Nome;
@@ -41,8 +48,8 @@ namespace TWeb.Administracao.Usuarios
             }
             else
             {
-                UsuarioServico prefeituraServico = new UsuarioServico();
-                prefeituraServico.AdicionarUsuario(usuarioModelo);
+                _usuarioServico = new UsuarioServico();
+                _usuarioServico.AdicionarUsuario(usuarioModelo);
             }
         }
 
@@ -69,8 +76,8 @@ namespace TWeb.Administracao.Usuarios
             }
             else
             {
-                UsuarioServico usuarioServico = new UsuarioServico();
-                usuarioServico.AtualizarUsuario(usuarioModelo);
+                _usuarioServico = new UsuarioServico();
+                _usuarioServico.AtualizarUsuario(usuarioModelo);
             }
         }
     }
