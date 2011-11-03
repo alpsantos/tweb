@@ -19,34 +19,39 @@
             </div>
             <div class="loginDisplay">
                 <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
-<%--                    <AnonymousTemplate>
+                    <%--                    <AnonymousTemplate>
                         [ <a href="~/autenticacao/default.aspx" ID="LogInLink" runat="server">Log In</a> ]
                     </AnonymousTemplate>--%>
                     <LoggedInTemplate>
-                        Bem vindo <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span> !
-                        [  <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Sair" LogoutPageUrl="~/"/> ]
+                        Bem vindo <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server"/> </span>
+                        ! [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Sair" LogoutPageUrl="~/" />]
                     </LoggedInTemplate>
                 </asp:LoginView>
             </div>
             <div class="clear hideSkiplink">
-                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
-                    <Items>
-                        <asp:MenuItem NavigateUrl="~/default.aspx" Text="Página Inicial"/>
-                        <asp:MenuItem NavigateUrl="~/prefeituras/listagem.aspx" Text="Prefeituras"/>
-                        <asp:MenuItem NavigateUrl="~/usuarios/listagem.aspx" Text="Usuários"/>
-                        <asp:MenuItem NavigateUrl="~/glossario/manter.aspx" Text="Glossário"/>
-                    </Items>
-                </asp:Menu>
+                <asp:LoginView ID="LoginView1" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        <br>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                            <Items>
+                                <asp:MenuItem NavigateUrl="~/prefeituras/listagem.aspx" Text="Prefeituras" />
+                                <asp:MenuItem NavigateUrl="~/usuarios/listagem.aspx" Text="Usuários" />
+                                <asp:MenuItem NavigateUrl="~/glossario/manter.aspx" Text="Glossário" />
+                            </Items>
+                        </asp:Menu>
+                    </LoggedInTemplate>
+                </asp:LoginView>
             </div>
         </div>
         <div class="main">
-            <asp:ContentPlaceHolder ID="MainContent"   runat="server"/>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
         <div class="clear">
         </div>
     </div>
     <div class="footer">
-        
     </div>
     </form>
 </body>

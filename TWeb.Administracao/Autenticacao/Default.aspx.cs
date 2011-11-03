@@ -22,6 +22,9 @@ namespace TWeb.Administracao.Autenticacao
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (User.Identity.IsAuthenticated)
+                Response.Redirect("../prefeituras/listagem.aspx", true);
+
             string returnUrl = Request["ReturnUrl"];
 
             if (returnUrl != null)
