@@ -10,6 +10,7 @@
     <title>Portal TOMWEB</title>
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery-1.5.1.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery-ui-1.8.11.js")"></script>
+
     <link href="@Url.Content("~/content/styles/site.css")" rel="Stylesheet" type="text/css" />
     <link href="@Url.Content("~/content/styles/jquery-ui/jquery-ui-1.8.14.custom.css")" rel="Stylesheet" type="text/css" />
     <link href="@Url.Content("~/content/styles/paginacao.css")" rel="Stylesheet" type="text/css" />
@@ -44,6 +45,13 @@
             $('#div-resultado ul li:last').css('border-bottom', 'none');
         }
     </script>
+
+    <!--[if lt IE 7 ]> <body class="ie6 ie8down custom"> <![endif]-->
+    <!--[if IE 7 ]>    <body class="ie7 ie8down custom"> <![endif]-->
+    <!--[if IE 8 ]>    <body class="ie8 ie8down custom"> <![endif]-->
+    <!--[if IE 9 ]>    <body class="ie9 custom"> <![endif]-->
+    <!--[if (gt IE 9) ]><body class="modern custom"> <![endif]-->
+    <!--[!(IE)]><!--> <body class="notIE modern custom"> <!--<![endif]-->
 </head>
 <body>
     <div id="div-fixo-loading" class="bordaBox" style="display:none">
@@ -62,7 +70,8 @@
             <div id="div-busca">
                 <img class="img-topo-busca" alt="" src="@Url.Content("~/content/images/ImagemTopoBusca.png")"/>
                 <h1>
-                    O TOMWEB dispõe de @Model.TotalPrefeitura Municípios monitorados</h1>
+                    O TOMWEB dispõe de @Model.TotalPrefeitura Municípios monitorados
+               </h1>
                 <div id="div-busca-fundocampo">
                     @using (Html.BeginForm())
                     {

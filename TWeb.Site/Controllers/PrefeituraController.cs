@@ -57,7 +57,8 @@ namespace TWeb.Portal.Controllers
             }
             else
             {
-                MontarView(homeViewModel, indicePagina, pref => pref.Nome.StartsWith(parametros["busca"]), parametros);
+                var queryParametro = parametros["busca"].ToString();
+                MontarView(homeViewModel, indicePagina, pref => pref.Nome.Contains(queryParametro), parametros);
             }
         }
 
