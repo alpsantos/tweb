@@ -163,7 +163,7 @@ div.menu ul
 
 div.menu ul li a, div.menu ul li a:visited
 {
-    background: -moz-linear-gradient(center top , #89C3E1, #5C89C4) repeat scroll 0 0 transparent;
+    background-color : #5C89C4;
     border: 1px #4e667d solid;
     color: #dde4ec;
     display: block;
@@ -177,31 +177,16 @@ div.menu ul li a, div.menu ul li a:visited
 
 div.menu ul li a:hover
 {
-    background: -moz-linear-gradient(center top , #89C3E1, #5C89C4) repeat scroll 0 0 transparent;
-    color: #465c71;
+    background-color : #89C3E1;
     text-decoration: none;
 }
 
 div.menu ul li a:active
 {
-    background: -moz-linear-gradient(center top , #89C3E1, #5C89C4) repeat scroll 0 0 transparent;
-    color: #cfdbe6;
+    background-color : #89C3E1;
     text-decoration: none;
 }
 
-#cmd-buscar {
-    background: -moz-linear-gradient(center top , #89C3E1, #5C89C4) repeat scroll 0 0 transparent;
-    border: 1px solid #5C89C4;
-    color: #FFFFFF;
-    cursor: pointer;
-    float: left;
-    font-family: Arial;
-    font-size: 21px;
-    height: 46px;
-    margin: 7px 0 0;
-    text-shadow: 2px 2px 1px #5078AB;
-    width: 113px;
-}
 
 /* FORM ELEMENTS   
 ----------------------------------------------------------*/
@@ -274,7 +259,7 @@ div.accountInfo
     display: block;
     text-align: right;
     padding: 10px;
-    color: White;
+    color: #666666;
 }
 
 .loginDisplay a:link
