@@ -9,3 +9,4 @@
 *.vssscc
 !/packages/*/lib/*.dll
 */Web*config
+*/*Publish*xml
