@@ -98,6 +98,11 @@
                     {
                         @Html.Action("Prefeituras", prefeitura);
                     }
+
+                    @if (Model.Prefeituras.Count() == 0)
+                    {
+                        <text><div id="div-semresultado" style="text-align:center;font-size:medium;font-weight:bold; color:gray;padding-top:30px;">Nenhum resultado encontrado...</div></text>
+                    }
                 </ul>
             </div>
             <div id="div-paginacao2">
